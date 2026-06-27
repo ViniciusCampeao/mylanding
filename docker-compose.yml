@@ -5,4 +5,6 @@ services:
     container_name: fluxo-landing
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3001:3000"
+      # 127.0.0.1 = só escuta local; quem expõe pro mundo é o cloudflared.
+      # 8080 no host (3001 já está ocupada na VPS).
+      - "127.0.0.1:8090:3000"
