@@ -1,5 +1,4 @@
 import { shaderMaterial } from "@react-three/drei";
-import { extend } from "@react-three/fiber";
 import * as THREE from "three";
 
 const vertexShader = /* glsl */ `
@@ -137,8 +136,6 @@ export const AuroraMaterial = shaderMaterial(
   vertexShader,
   fragmentShader
 );
-
-extend({ AuroraMaterial });
 
 declare module "@react-three/fiber" {
   interface ThreeElements {

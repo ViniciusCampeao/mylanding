@@ -1,6 +1,10 @@
 import { useRef, useEffect } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree, extend } from "@react-three/fiber";
 import * as THREE from "three";
+import { AuroraMaterial } from "./aurora-material";
+
+// Garante que o extend rode antes de qualquer render do Canvas
+extend({ AuroraMaterial });
 
 // Suprime aviso benigno do Three.js 0.185 sobre THREE.Clock deprecado
 // (usado internamente pelo R3F — não há nada a corrigir do nosso lado)
@@ -11,7 +15,6 @@ if (typeof window !== "undefined") {
     _warn(...args);
   };
 }
-import "./aurora-material";
 import { useCanvasVisibility } from "@/hooks/use-canvas-visibility";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useIsMobile as useMobile } from "@/hooks/use-mobile";
