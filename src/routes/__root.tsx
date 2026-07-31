@@ -7,8 +7,11 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { type ReactNode } from "react";
+import { type ReactNode, useEffect } from "react";
+import { Toaster } from "sonner";
 
+import { LocaleProvider } from "@/i18n/locale-context";
+import { FireflyCursor } from "@/components/ux/firefly-cursor";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -70,12 +73,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Fluxo — Tecnologia e automação para seu negócio" },
-      { name: "description", content: "Soluções sob medida que automatizam atendimento, agenda, comanda e cardápio. Pare de perder cliente e tire o trabalho repetitivo das costas." },
-      { name: "author", content: "Fluxo" },
-      { name: "theme-color", content: "#1b1d22" },
-      { property: "og:title", content: "Fluxo — Tecnologia e automação para seu negócio" },
-      { property: "og:description", content: "Automatize o atendimento no WhatsApp, agenda, comanda e cardápio digital. Soluções sob medida para o seu negócio." },
+      { title: "Vinícius Campeão — Full Stack Developer & Infrastructure" },
+      {
+        name: "description",
+        content:
+          "Full Stack Developer, Infrastructure & DevOps. ADS student at UTFPR. Building real products with React, Node.js, Docker, and my own VPS.",
+      },
+      { name: "author", content: "Vinícius Campeão Fernandes" },
+      { name: "theme-color", content: "#050808" },
+      { property: "og:title", content: "Vinícius Campeão — Full Stack Developer & Infrastructure" },
+      {
+        property: "og:description",
+        content:
+          "Full Stack Developer, Infrastructure & DevOps. Building and self-hosting real products.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -84,7 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Text:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
       },
       { rel: "stylesheet", href: appCss },
     ],
@@ -111,9 +122,31 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  // Sempre inicia no topo — desabilita restauração de scroll do browser
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <LocaleProvider>
+        <FireflyCursor />
+        <Outlet />
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              background: "oklch(0.20 0.014 260)",
+              border: "1px solid oklch(1 0 0 / 0.08)",
+              color: "oklch(0.96 0.005 250)",
+            },
+          }}
+        />
+      </LocaleProvider>
     </QueryClientProvider>
   );
 }
