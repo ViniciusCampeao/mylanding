@@ -8,15 +8,14 @@ export const content: Content = {
       "Full Stack Developer • Infrastructure • DevOps"
     ),
     bio: l(
-      "Estudante de ADS na UTFPR com experiência prática em desenvolvimento full stack, infraestrutura e automação. Mantenho operação própria com VPS, Docker e Cloudflare — e conduzo pesquisa em visão computacional aplicada à bioinformática.",
-      "ADS student at UTFPR with hands-on experience in full stack development, infrastructure, and automation. I run my own operation with VPS, Docker, and Cloudflare — and conduct research in computer vision applied to bioinformatics."
+      "Graduando em Análise e Desenvolvimento de Sistemas na UTFPR com experiência prática em desenvolvimento full stack, infraestrutura, redes e automação. Mantenho operação própria com VPS, Docker e Cloudflare — e conduzo pesquisa em visão computacional aplicada à bioinformática.",
+      "Undergraduate in Systems Analysis and Development at UTFPR with practical experience in full stack development, infrastructure, networks, and automation. I maintain my own operation with VPS, Docker, and Cloudflare — and conduct research in computer vision applied to bioinformatics."
     ),
     githubUsername: "ViniciusCampeao",
-    linkedinUrl: "https://linkedin.com/in/vinicius-campeao", /* EDIT: seu LinkedIn real */
+    linkedinUrl: "www.linkedin.com/in/vinicius-campeão-b35807260", /* EDIT: seu LinkedIn real */
     whatsapp: "5514998077628",
-    email: "vinicius.2022@alunos.utfpr.edu.br",
-    location: "Cornélio Procópio, PR — Brasil",
-    university: l("UTFPR Cornélio Procópio", "UTFPR Cornélio Procópio"),
+    email: "viniciusfernandes643@gmail.com",
+    university: l("UTFPR - Universidade Tecnológica Federal do Paraná", "UTFPR - Federal University of Technology – Paraná"),
   },
 
   nav: {
@@ -28,14 +27,13 @@ export const content: Content = {
   },
 
   hero: {
-    greeting: l("Olá, eu sou", "Hi, I'm"),
     scrollHint: l("Role para explorar", "Scroll to explore"),
   },
 
   about: {
     manifesto: l(
-      "Acredito que bom software é aquele que chega ao usuário — por isso não separo código de infraestrutura. Codifico, contenerizo, faço o deploy. Do zero ao ar.",
-      "I believe great software is what actually reaches the user — so I don't separate code from infrastructure. I write it, containerize it, ship it. From zero to live."
+      "Sou desenvolvedor full-stack com foco em web. Trabalho com TypeScript, React, Next.js e Tailwind para criar soluções customizadas, automações e integrações robustas. Mas não fico preso ao navegador: sou sysadmin da minha infraestrutura (Linux, Docker, VPS), construo com ESP32 e Arduino, e mantenho um home lab para explorar redes, eletrônica e IoT. Esse conhecimento transversal me permite pensar em problemas além da interface e entregar sistemas completos",
+      "I'm a full-stack developer with a focus on the web. I work with TypeScript, React, Next.js, and Tailwind to create custom solutions, automations, and robust integrations. But I don't stay confined to the browser: I'm a sysadmin of my own infrastructure (Linux, Docker, VPS), I build with ESP32 and Arduino, and I maintain a home lab to explore networks, electronics, and IoT. This cross-cutting knowledge allows me to think about problems beyond the interface and deliver complete systems."
     ),
     researchTitle: l("Iniciação Científica", "Undergraduate Research"),
     researchDescription: l(

@@ -54,7 +54,6 @@ export interface Content {
     linkedinUrl: string;
     whatsapp: string;
     email: string;
-    location: string;
     university: L;
   };
   nav: {
@@ -65,7 +64,6 @@ export interface Content {
     contact: L;
   };
   hero: {
-    greeting: L;
     scrollHint: L;
   };
   about: {

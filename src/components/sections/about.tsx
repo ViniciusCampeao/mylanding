@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { Github, MapPin, GraduationCap, FlaskConical } from "lucide-react";
+import { Github, GraduationCap, FlaskConical } from "lucide-react";
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap";
 import { useT } from "@/i18n/locale-context";
@@ -125,7 +125,6 @@ function IdentityCard() {
 
         <div className="space-y-2">
           {[
-            { icon: MapPin, text: content.meta.location },
             { icon: GraduationCap, text: t(content.meta.university) },
             {
               icon: Github,

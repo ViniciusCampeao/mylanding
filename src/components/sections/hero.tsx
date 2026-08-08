@@ -69,15 +69,6 @@ export function HeroSection() {
       <div className="relative z-20 mx-auto w-full max-w-5xl px-6 text-center">
         <div className="flex flex-col items-center">
 
-          {/* Eyebrow mono */}
-          <motion.p
-            {...fadeUp(0.2)}
-            className="mb-4 font-mono text-[11px] tracking-[0.35em] uppercase sm:text-xs"
-            style={{ color: "#3a9ab0" }}
-          >
-            {t(content.hero.greeting)}
-          </motion.p>
-
           {/* Nome — Bebas Neue máximo. Cada linha com caixa de altura fixa
               (leading-[0.85] + line-height reservada) pra nunca colidir */}
           <motion.h1
