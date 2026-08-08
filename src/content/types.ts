@@ -51,7 +51,7 @@ export interface Project {
 
 export interface SkillItem {
   name: string;
-  level: 1 | 2 | 3;
+  projectId: string;
 }
 
 export interface SkillGroup {
@@ -106,6 +106,7 @@ export interface Content {
   };
   skills: {
     sectionTitle: L;
+    sectionSubtitle: L;
     groups: SkillGroup[];
   };
   portfolio: {

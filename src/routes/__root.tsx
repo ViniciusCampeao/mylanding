@@ -11,7 +11,6 @@ import { type ReactNode, useEffect } from "react";
 import { Toaster } from "sonner";
 
 import { LocaleProvider } from "@/i18n/locale-context";
-import { FireflyCursor } from "@/components/ux/firefly-cursor";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -43,15 +42,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          Algo deu errado
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Tente novamente em instantes.
-        </p>
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">Algo deu errado</h1>
+        <p className="mt-2 text-sm text-muted-foreground">Tente novamente em instantes.</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Tentar novamente
@@ -134,7 +132,6 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleProvider>
-        <FireflyCursor />
         <Outlet />
         <Toaster
           position="bottom-center"

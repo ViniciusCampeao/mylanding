@@ -50,8 +50,8 @@
   /* ── FLORESTA ÀS 3H DA MANHÃ ── */
 
   /* Preto profundo com hint orgânico verde-musgo */
-  --background:  #050808;
-  --foreground:  #c8d4c0;
+  --background:  #030405;
+  --foreground:  #d2ddc8;
 
   --surface:         #0a0f0a;
   --surface-elevated:#0f150f;
@@ -240,12 +240,6 @@ html.lenis body { height: auto; }
 @keyframes scroll-hint-bounce {
   0%, 100% { transform: translateY(0); opacity: 0.4; }
   50% { transform: translateY(6px); opacity: 0.8; }
-}
-
-/* Vagalume — brilho pulsante do halo do cursor (via filter, não mexe em transform) */
-@keyframes firefly-pulse {
-  0%, 100% { filter: blur(2px) brightness(1); }
-  50% { filter: blur(3px) brightness(1.5); }
 }
 
 @utility animate-float-slow { animation: float-slow 8s ease-in-out infinite; }

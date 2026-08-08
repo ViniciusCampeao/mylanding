@@ -249,138 +249,141 @@ export function InfraDiagram() {
           "radial-gradient(ellipse 80% 80% at 40% 30%, rgb(74 122 74 / 0.05), rgb(5 8 8 / 0.4))",
       }}
     >
-      <svg
-        ref={svgRef}
-        viewBox={`0 0 ${W} ${H}`}
-        className="w-full"
-        style={{ maxHeight: 620 }}
-        onMouseLeave={() => setSelected(null)}
-      >
-        <defs>
-          <filter id="node-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
+      {/* overflow-x-auto + minWidth: em telas estreitas o diagrama rola
+          horizontalmente em vez de encolher o texto até ficar ilegível. */}
+      <div className="overflow-x-auto">
+        <svg
+          ref={svgRef}
+          viewBox={`0 0 ${W} ${H}`}
+          style={{ width: "100%", minWidth: W, maxHeight: 620, display: "block" }}
+          onMouseLeave={() => setSelected(null)}
+        >
+          <defs>
+            <filter id="node-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="b" />
+              <feMerge>
+                <feMergeNode in="b" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
 
-        {/* Arestas */}
-        {edges.map((e) => {
-          const a = nodes[e.from];
-          const b = nodes[e.to];
-          const d = `M ${a.x} ${a.y} L ${b.x} ${b.y}`;
-          const active = isEdgeActive(e.id);
-          return (
-            <path
-              key={e.id}
-              id={e.id}
-              className={e.guard ? "infra-guard" : e.planned ? "infra-planned" : "infra-path"}
-              d={d}
-              stroke={e.color}
-              strokeWidth={selected && active ? 2.2 : 1.4}
-              strokeOpacity={active ? (e.guard ? 0.5 : e.planned ? 0.35 : 0.75) : 0.08}
-              fill="none"
-              strokeDasharray={e.guard ? "5 6" : e.planned ? "2 5" : undefined}
-              style={{ transition: "stroke-opacity 0.25s, stroke-width 0.25s" }}
-            />
-          );
-        })}
-
-        {/* Pacotes — só em conexões ativas de verdade, não planejadas */}
-        {edges
-          .filter((e) => !e.guard && !e.planned)
-          .map((e) => {
+          {/* Arestas */}
+          {edges.map((e) => {
+            const a = nodes[e.from];
+            const b = nodes[e.to];
+            const d = `M ${a.x} ${a.y} L ${b.x} ${b.y}`;
             const active = isEdgeActive(e.id);
             return (
-              <circle
-                key={`pkt-${e.id}`}
-                className="infra-packet"
-                data-path={e.id}
-                r={active && selected ? 3.5 : 2.4}
-                fill={e.color}
-                opacity={active ? 1 : 0.06}
-                style={{ filter: "url(#node-glow)", transition: "opacity 0.25s" }}
+              <path
+                key={e.id}
+                id={e.id}
+                className={e.guard ? "infra-guard" : e.planned ? "infra-planned" : "infra-path"}
+                d={d}
+                stroke={e.color}
+                strokeWidth={selected && active ? 2.2 : 1.4}
+                strokeOpacity={active ? (e.guard ? 0.5 : e.planned ? 0.35 : 0.75) : 0.08}
+                fill="none"
+                strokeDasharray={e.guard ? "5 6" : e.planned ? "2 5" : undefined}
+                style={{ transition: "stroke-opacity 0.25s, stroke-width 0.25s" }}
               />
             );
           })}
 
-        {/* Nós */}
-        {(Object.keys(nodes) as NodeKey[]).map((key) => {
-          const n = nodes[key];
-          const active = isNodeActive(key);
-          const isSel = selected === key;
-          return (
-            <g
-              key={key}
-              className="infra-node"
-              style={{ cursor: "pointer", opacity: 0, transition: "opacity 0.25s" }}
-              opacity={active ? (n.planned ? 0.6 : 1) : 0.1}
-              onMouseEnter={() => setSelected(key)}
-              onClick={() => setSelected((s) => (s === key ? null : key))}
-            >
-              {isSel && (
+          {/* Pacotes — só em conexões ativas de verdade, não planejadas */}
+          {edges
+            .filter((e) => !e.guard && !e.planned)
+            .map((e) => {
+              const active = isEdgeActive(e.id);
+              return (
+                <circle
+                  key={`pkt-${e.id}`}
+                  className="infra-packet"
+                  data-path={e.id}
+                  r={active && selected ? 3.5 : 2.4}
+                  fill={e.color}
+                  opacity={active ? 1 : 0.06}
+                  style={{ filter: "url(#node-glow)", transition: "opacity 0.25s" }}
+                />
+              );
+            })}
+
+          {/* Nós */}
+          {(Object.keys(nodes) as NodeKey[]).map((key) => {
+            const n = nodes[key];
+            const active = isNodeActive(key);
+            const isSel = selected === key;
+            return (
+              <g
+                key={key}
+                className="infra-node"
+                style={{ cursor: "pointer", opacity: 0, transition: "opacity 0.25s" }}
+                opacity={active ? (n.planned ? 0.6 : 1) : 0.1}
+                onMouseEnter={() => setSelected(key)}
+                onClick={() => setSelected((s) => (s === key ? null : key))}
+              >
+                {isSel && (
+                  <circle
+                    cx={n.x}
+                    cy={n.y}
+                    r={n.size + 10}
+                    fill="none"
+                    stroke={n.color}
+                    strokeWidth={1.2}
+                    opacity={0.45}
+                  />
+                )}
                 <circle
                   cx={n.x}
                   cy={n.y}
-                  r={n.size + 10}
-                  fill="none"
+                  r={n.size}
+                  fill={`${n.color}1e`}
                   stroke={n.color}
-                  strokeWidth={1.2}
-                  opacity={0.45}
+                  strokeWidth={isSel ? 2.2 : 1.4}
+                  strokeDasharray={n.planned ? "3 4" : undefined}
+                  style={{
+                    transition: "stroke-width 0.2s",
+                    filter: isSel ? "url(#node-glow)" : undefined,
+                  }}
                 />
-              )}
-              <circle
-                cx={n.x}
-                cy={n.y}
-                r={n.size}
-                fill={`${n.color}1e`}
-                stroke={n.color}
-                strokeWidth={isSel ? 2.2 : 1.4}
-                strokeDasharray={n.planned ? "3 4" : undefined}
-                style={{
-                  transition: "stroke-width 0.2s",
-                  filter: isSel ? "url(#node-glow)" : undefined,
-                }}
-              />
-              <circle
-                className={`infra-core${n.planned ? " infra-core-planned" : ""}`}
-                cx={n.x}
-                cy={n.y}
-                r={n.size * 0.32}
-                fill={`${n.color}80`}
-                opacity={n.planned ? 0.6 : 1}
-              />
-              <text
-                x={n.x}
-                y={n.y + n.size + 15}
-                textAnchor="middle"
-                fontSize={11}
-                fontFamily="JetBrains Mono, monospace"
-                fill={isSel ? "#e2ead9" : active ? "#a9b7a3" : "#4a5a4a"}
-                style={{ transition: "fill 0.2s" }}
-              >
-                {n.label}
-              </text>
-              {n.sublabel && (
+                <circle
+                  className={`infra-core${n.planned ? " infra-core-planned" : ""}`}
+                  cx={n.x}
+                  cy={n.y}
+                  r={n.size * 0.32}
+                  fill={`${n.color}80`}
+                  opacity={n.planned ? 0.6 : 1}
+                />
                 <text
                   x={n.x}
-                  y={n.y + n.size + 28}
+                  y={n.y + n.size + 15}
                   textAnchor="middle"
-                  fontSize={9.5}
+                  fontSize={11}
                   fontFamily="JetBrains Mono, monospace"
-                  fill={n.color}
-                  opacity={active ? 0.9 : 0.2}
-                  style={{ transition: "opacity 0.25s" }}
+                  fill={isSel ? "#e2ead9" : active ? "#a9b7a3" : "#4a5a4a"}
+                  style={{ transition: "fill 0.2s" }}
                 >
-                  {n.sublabel}
+                  {n.label}
                 </text>
-              )}
-            </g>
-          );
-        })}
-      </svg>
+                {n.sublabel && (
+                  <text
+                    x={n.x}
+                    y={n.y + n.size + 28}
+                    textAnchor="middle"
+                    fontSize={9.5}
+                    fontFamily="JetBrains Mono, monospace"
+                    fill={n.color}
+                    opacity={active ? 0.9 : 0.2}
+                    style={{ transition: "opacity 0.25s" }}
+                  >
+                    {n.sublabel}
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
     </div>
   );
 }

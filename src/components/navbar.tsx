@@ -7,11 +7,11 @@ import { useT } from "@/i18n/locale-context";
 import { content } from "@/content/content";
 
 const sections = [
-  { id: "about",     label: content.nav.about },
-  { id: "skills",    label: content.nav.skills },
+  { id: "about", label: content.nav.about },
   { id: "portfolio", label: content.nav.portfolio },
-  { id: "infra",     label: content.nav.infra },
-  { id: "contact",   label: content.nav.contact },
+  { id: "infra", label: content.nav.infra },
+  { id: "skills", label: content.nav.skills },
+  { id: "contact", label: content.nav.contact },
 ];
 
 export function Navbar() {

@@ -48,51 +48,45 @@ export const content: Content = {
 
   skills: {
     sectionTitle: l("Stack & Competências", "Stack & Skills"),
+    sectionSubtitle: l(
+      "Passa o mouse pra ver onde eu uso cada uma. Clica pra ir direto no projeto.",
+      "Hover to see where each one shows up. Click to jump straight to the project.",
+    ),
     groups: [
       {
         id: "frontend",
         label: l("Frontend", "Frontend"),
         items: [
-          { name: "TypeScript", level: 3 },
-          { name: "React", level: 3 },
-          { name: "Next.js", level: 2 },
-          { name: "Tailwind CSS", level: 3 },
-          { name: "TanStack", level: 2 },
+          { name: "TypeScript", projectId: "mindrabar" },
+          { name: "React", projectId: "mindrabar" },
+          { name: "Tailwind CSS", projectId: "mindrabar" },
         ],
       },
       {
         id: "backend",
         label: l("Backend", "Backend"),
         items: [
-          { name: "Python", level: 3 },
-          { name: "NestJS", level: 2 },
-          { name: "Node.js", level: 2 },
-          { name: "PostgreSQL", level: 2 },
-          { name: "Redis", level: 2 },
-          { name: "Prisma", level: 2 },
+          { name: "Python", projectId: "cartao-de-todos" },
+          { name: "NestJS", projectId: "recompra-farma" },
+          { name: "PostgreSQL", projectId: "recompra-farma" },
         ],
       },
       {
         id: "infra",
         label: l("Infra & DevOps", "Infra & DevOps"),
         items: [
-          { name: "Docker", level: 3 },
-          { name: "Linux / VPS", level: 3 },
-          { name: "Cloudflare Tunnel", level: 3 },
-          { name: "Tailscale", level: 2 },
-          { name: "systemd", level: 2 },
-          { name: "AWS", level: 2 },
-          { name: "Git / GitHub", level: 3 },
+          { name: "Docker", projectId: "self-hosted-infrastructure" },
+          { name: "Linux / VPS", projectId: "self-hosted-infrastructure" },
+          { name: "Cloudflare Tunnel", projectId: "self-hosted-infrastructure" },
         ],
       },
       {
         id: "research",
-        label: l("Pesquisa & Visão Comp.", "Research & Computer Vision"),
+        label: l("Pesquisa & Embarcados", "Research & Embedded"),
         items: [
-          { name: "OpenCV", level: 2 },
-          { name: "Raspberry Pi", level: 2 },
-          { name: "Python (CV)", level: 2 },
-          { name: "N8N", level: 2 },
+          { name: "ESP32", projectId: "ai-home-assistant" },
+          { name: "OpenCV", projectId: "colonias-bacterianas" },
+          { name: "Raspberry Pi", projectId: "colonias-bacterianas" },
         ],
       },
     ],
