@@ -7,10 +7,9 @@ import { useProjectLink } from "@/components/providers/project-link-provider";
 
 /* ─────────────────────────────────────────────────────────────
    Chip de skill ligado a um projeto.
-   Desktop: passar o mouse mostra o card com o projeto; clicar
-            no chip vai direto pro projeto.
-   Mobile (sem hover): primeiro toque abre o card; toque em
-            "Ver projeto" dentro dele é que navega.
+   Desktop: passar o mouse mostra o card com o projeto.
+   Qualquer dispositivo: clicar/tocar no chip vai direto pro
+            projeto — sem etapa intermediária.
    ───────────────────────────────────────────────────────────── */
 
 export function SkillChip({
@@ -35,11 +34,6 @@ export function SkillChip({
   }
 
   function handleChipClick() {
-    if (isMobile) {
-      // primeiro toque só revela o card; segundo toque (fora) fecha.
-      setOpen((v) => !v);
-      return;
-    }
     goToProject();
   }
 
@@ -117,23 +111,9 @@ export function SkillChip({
             >
               {t(project.tagline)}
             </p>
-            {isMobile ? (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToProject();
-                }}
-                className="mt-2 font-mono text-[10px] underline decoration-dotted underline-offset-2"
-                style={{ color: project.color }}
-              >
-                {t({ pt: "Ver projeto →", en: "View project →" })}
-              </button>
-            ) : (
-              <p className="mt-2 font-mono text-[10px]" style={{ color: project.color }}>
-                {t({ pt: "Ver projeto →", en: "View project →" })}
-              </p>
-            )}
+            <p className="mt-2 font-mono text-[10px]" style={{ color: project.color }}>
+              {t({ pt: "Ver projeto →", en: "View project →" })}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
