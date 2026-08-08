@@ -4,6 +4,7 @@ import { useT } from "@/i18n/locale-context";
 import { content } from "@/content/content";
 import type { Project } from "@/content/types";
 import { X, Lock } from "lucide-react";
+import { ProjectDiagram } from "./project-diagram";
 
 /* ─────────────────────────────────────────────────────────────
    Grid de projetos com expansão inline.
@@ -34,7 +35,11 @@ function ProjectCard({
       onClick={expanded ? undefined : onExpand}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.07, layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.07,
+        layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+      }}
       className="relative overflow-hidden"
       style={{
         borderRadius: "4px",
@@ -57,7 +62,10 @@ function ProjectCard({
         {/* Cabeçalho sempre visível */}
         <div className="mb-3 flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-xs tracking-[0.3em] uppercase" style={{ color: `${project.color}` }}>
+            <span
+              className="font-mono text-xs tracking-[0.3em] uppercase"
+              style={{ color: `${project.color}` }}
+            >
               {String(index + 1).padStart(2, "0")}
             </span>
             {project.highlight && (
@@ -77,7 +85,10 @@ function ProjectCard({
 
           {expanded ? (
             <button
-              onClick={(e) => { e.stopPropagation(); onClose(); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
               className="flex h-7 w-7 items-center justify-center rounded-sm transition-colors"
               style={{ border: `1px solid ${project.color}30`, color: `${project.color}80` }}
               onMouseEnter={(e) => {
@@ -96,7 +107,11 @@ function ProjectCard({
 
         <h3
           className="font-display mb-1 tracking-wider uppercase"
-          style={{ fontSize: expanded ? "clamp(2rem, 4vw, 2.8rem)" : "clamp(1.6rem, 3vw, 2.2rem)", color: "#e2ead9", lineHeight: 1 }}
+          style={{
+            fontSize: expanded ? "clamp(2rem, 4vw, 2.8rem)" : "clamp(1.6rem, 3vw, 2.2rem)",
+            color: "#e2ead9",
+            lineHeight: 1,
+          }}
         >
           {t(project.title)}
         </h3>
@@ -126,17 +141,32 @@ function ProjectCard({
                 <div>
                   <p
                     className="mb-6 leading-relaxed"
-                    style={{ fontFamily: "DM Serif Text, serif", color: "#9aab94", fontSize: "1rem" }}
+                    style={{
+                      fontFamily: "DM Serif Text, serif",
+                      color: "#9aab94",
+                      fontSize: "1rem",
+                    }}
                   >
                     {t(project.description)}
                   </p>
-                  <div className="flex items-center gap-2 font-mono text-xs" style={{ color: "#5a7a56" }}>
+                  <div
+                    className="flex items-center gap-2 font-mono text-xs"
+                    style={{ color: "#5a7a56" }}
+                  >
                     <Lock size={11} />
-                    <span>{t({ pt: "Código privado — projeto de cliente real", en: "Private code — real client project" })}</span>
+                    <span>
+                      {t({
+                        pt: "Código privado — projeto de cliente real",
+                        en: "Private code — real client project",
+                      })}
+                    </span>
                   </div>
                 </div>
                 <div>
-                  <p className="mb-3 font-mono text-[10px] tracking-widest uppercase" style={{ color: `${project.color}80` }}>
+                  <p
+                    className="mb-3 font-mono text-[10px] tracking-widest uppercase"
+                    style={{ color: `${project.color}80` }}
+                  >
                     {t({ pt: "Stack", en: "Stack" })}
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -161,6 +191,18 @@ function ProjectCard({
                   </p>
                 </div>
               </div>
+
+              {project.diagram && (
+                <div className="mt-6">
+                  <p
+                    className="mb-3 font-mono text-[10px] tracking-widest uppercase"
+                    style={{ color: `${project.color}80` }}
+                  >
+                    {t({ pt: "Arquitetura", en: "Architecture" })}
+                  </p>
+                  <ProjectDiagram diagram={project.diagram} color={project.color} />
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -185,7 +227,15 @@ function ProjectCard({
                 </span>
               ))}
               {project.stack.length > 4 && (
-                <span className="font-mono text-xs" style={{ color: "#6b7d66", borderRadius: "2px", padding: "3px 8px", border: "1px solid rgb(74 122 74 / 0.15)" }}>
+                <span
+                  className="font-mono text-xs"
+                  style={{
+                    color: "#6b7d66",
+                    borderRadius: "2px",
+                    padding: "3px 8px",
+                    border: "1px solid rgb(74 122 74 / 0.15)",
+                  }}
+                >
                   +{project.stack.length - 4}
                 </span>
               )}
@@ -209,11 +259,16 @@ export function PortfolioSection() {
 
   return (
     <section id="portfolio" className="relative py-32" ref={containerRef}>
-      <div className="glow-orb absolute bottom-0 left-1/3 h-80 w-80" style={{ background: "#1a6a8a", opacity: 0.12 }} />
+      <div
+        className="glow-orb absolute bottom-0 left-1/3 h-80 w-80"
+        style={{ background: "#1a6a8a", opacity: 0.12 }}
+      />
 
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-4 flex items-center gap-4">
-          <span className="font-mono text-xs tracking-widest" style={{ color: "#3a9ab070" }}>03</span>
+          <span className="font-mono text-xs tracking-widest" style={{ color: "#3a9ab070" }}>
+            03
+          </span>
           <div className="hairline flex-1" />
         </div>
         <h2
@@ -229,24 +284,48 @@ export function PortfolioSection() {
           {t(content.portfolio.sectionSubtitle)}
         </p>
 
-        {/* Grid — 2 colunas desktop, 1 coluna mobile.
+        {/* Uma subseção por categoria — cada uma com sua própria grid.
             Card expandido vai para coluna-full automaticamente via gridColumn. */}
-        <motion.div
-          layout
-          className="grid gap-4 sm:grid-cols-2"
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {content.portfolio.projects.map((project, i) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={i}
-              expanded={expanded === project.id}
-              onExpand={() => setExpanded(project.id)}
-              onClose={handleClose}
-            />
-          ))}
-        </motion.div>
+        <div className="space-y-16">
+          {content.portfolio.categories.map((category) => {
+            const projects = content.portfolio.projects.filter((p) => p.category === category.id);
+            if (projects.length === 0) return null;
+
+            return (
+              <div key={category.id}>
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="font-mono text-xs tracking-[0.3em]" style={{ color: "#3a9ab0" }}>
+                    {category.number}
+                  </span>
+                  <h3
+                    className="font-mono text-xs tracking-[0.3em] uppercase"
+                    style={{ color: "#7a9c9a" }}
+                  >
+                    {t(category.label)}
+                  </h3>
+                  <div className="hairline flex-1" style={{ opacity: 0.5 }} />
+                </div>
+
+                <motion.div
+                  layout
+                  className="grid gap-4 sm:grid-cols-2"
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {projects.map((project, i) => (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      index={i}
+                      expanded={expanded === project.id}
+                      onExpand={() => setExpanded(project.id)}
+                      onClose={handleClose}
+                    />
+                  ))}
+                </motion.div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

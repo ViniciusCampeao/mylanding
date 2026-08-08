@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Shield, Server, Globe } from "lucide-react";
+import { Shield, Server, Globe, DatabaseBackup, Wifi } from "lucide-react";
 import { useT } from "@/i18n/locale-context";
 import { content } from "@/content/content";
 import { InfraDiagram } from "./infra-diagram";
@@ -20,6 +20,16 @@ const highlights = [
     label: { pt: "Docker Compose Networks", en: "Docker Compose Networks" },
     desc: { pt: "Serviços isolados por rede", en: "Services isolated by network" },
   },
+  {
+    icon: DatabaseBackup,
+    label: { pt: "Backup na AWS", en: "AWS Backup" },
+    desc: { pt: "Cópia externa do banco de dados", en: "Off-site database copy" },
+  },
+  {
+    icon: Wifi,
+    label: { pt: "Link Redundante", en: "Redundant Link" },
+    desc: { pt: "Segundo provedor em failover", en: "Second ISP as failover" },
+  },
 ] as const;
 
 export function InfraSection() {
@@ -27,12 +37,20 @@ export function InfraSection() {
 
   return (
     <section id="infra" className="relative py-32">
-      <div className="glow-orb absolute bottom-16 right-0 h-80 w-80" style={{ background: "#4a7a4a", opacity: 0.12 }} />
-      <div className="glow-orb absolute top-32 left-0 h-64 w-64" style={{ background: "#2d1a3d", opacity: 0.2 }} />
+      <div
+        className="glow-orb absolute bottom-16 right-0 h-80 w-80"
+        style={{ background: "#4a7a4a", opacity: 0.12 }}
+      />
+      <div
+        className="glow-orb absolute top-32 left-0 h-64 w-64"
+        style={{ background: "#2d1a3d", opacity: 0.2 }}
+      />
 
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-4 flex items-center gap-4">
-          <span className="font-mono text-xs tracking-widest" style={{ color: "#4a7a4a40" }}>04</span>
+          <span className="font-mono text-xs tracking-widest" style={{ color: "#4a7a4a40" }}>
+            04
+          </span>
           <div className="hairline flex-1" />
         </div>
 
@@ -50,7 +68,10 @@ export function InfraSection() {
           {t(content.infra.sectionSubtitle)}
         </p>
 
-        <p className="mb-12 max-w-2xl font-mono text-sm leading-relaxed" style={{ color: "#7a9074" }}>
+        <p
+          className="mb-12 max-w-2xl font-mono text-sm leading-relaxed"
+          style={{ color: "#7a9074" }}
+        >
           {t(content.infra.description)}
         </p>
 
@@ -67,7 +88,10 @@ export function InfraSection() {
             >
               <h.icon size={16} style={{ color: "#7aaa7a", flexShrink: 0 }} />
               <div>
-                <p className="font-mono text-sm tracking-widest uppercase" style={{ color: "#e8efe2" }}>
+                <p
+                  className="font-mono text-sm tracking-widest uppercase"
+                  style={{ color: "#e8efe2" }}
+                >
                   {t(h.label as { pt: string; en: string })}
                 </p>
                 <p className="font-mono text-xs" style={{ color: "#8a9c84" }}>
@@ -90,7 +114,10 @@ export function InfraSection() {
         {/* Experiência */}
         <div className="mt-24">
           <div className="mb-8 flex items-center gap-4">
-            <span className="font-mono text-sm tracking-widest uppercase" style={{ color: "#7aaa7a" }}>
+            <span
+              className="font-mono text-sm tracking-widest uppercase"
+              style={{ color: "#7aaa7a" }}
+            >
               {t(content.experience.sectionTitle)}
             </span>
             <div className="hairline flex-1" />
@@ -114,7 +141,10 @@ export function InfraSection() {
                     {exp.company}
                   </h3>
                   {t(exp.period) && (
-                    <span className="font-mono text-xs tracking-wider flex-shrink-0" style={{ color: "#7aaa7a" }}>
+                    <span
+                      className="font-mono text-xs tracking-wider flex-shrink-0"
+                      style={{ color: "#7aaa7a" }}
+                    >
                       {t(exp.period)}
                     </span>
                   )}
