@@ -1,8 +1,7 @@
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback } from "react";
 import { motion } from "motion/react";
 import { useT } from "@/i18n/locale-context";
 import { content } from "@/content/content";
-import { useProjectLink } from "@/components/providers/project-link-provider";
 import { ProjectCard } from "./project-card";
 
 /* ─────────────────────────────────────────────────────────────
@@ -16,20 +15,8 @@ export function PortfolioSection() {
   const t = useT();
   const [expanded, setExpanded] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { focusedProjectId, focusToken } = useProjectLink();
 
   const handleClose = useCallback(() => setExpanded(null), []);
-
-  // Uma skill foi clicada em outra seção — expande o card e rola até ele.
-  useEffect(() => {
-    if (!focusedProjectId) return;
-    setExpanded(focusedProjectId);
-    const el = document.getElementById(`project-${focusedProjectId}`);
-    requestAnimationFrame(() => {
-      el?.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [focusToken]);
 
   return (
     <section id="portfolio" className="relative py-32" ref={containerRef}>

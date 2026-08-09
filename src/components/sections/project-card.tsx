@@ -21,7 +21,6 @@ import {
   Radio,
   Cpu,
   Antenna,
-  AudioWaveform,
   Bot,
   ListChecks,
   Gamepad2,
@@ -52,7 +51,6 @@ const ICONS: Record<string, LucideIcon> = {
   Radio,
   Cpu,
   Antenna,
-  AudioWaveform,
   Bot,
   ListChecks,
   Gamepad2,
@@ -61,13 +59,15 @@ const ICONS: Record<string, LucideIcon> = {
 const STATUS_COLOR: Record<Project["status"], string> = {
   production: "#4ecb6b",
   active: "#4ab0e0",
+  sporadic: "#c9a227",
   archived: "#6b7d66",
 };
 
 const STATUS_LABEL: Record<Project["status"], { pt: string; en: string }> = {
   production: { pt: "Em produção", en: "In production" },
   active: { pt: "Ativo", en: "Active" },
-  archived: { pt: "Arquivado", en: "Archived" },
+  sporadic: { pt: "Uso esporádico", en: "On and off" },
+  archived: { pt: "Finalizado", en: "Completed" },
 };
 
 export function ProjectCard({
@@ -211,14 +211,24 @@ export function ProjectCard({
         </div>
 
         {/* Status — discreto, sempre visível */}
-        <div className="mt-4 flex items-center gap-1.5">
-          <span
-            className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
-            style={{ background: STATUS_COLOR[project.status] }}
-          />
-          <span className="font-mono text-[10px] tracking-wide" style={{ color: "#7a8c76" }}>
-            {statusLabel}
-          </span>
+        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <div className="flex items-center gap-1.5">
+            <span
+              className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
+              style={{ background: STATUS_COLOR[project.status] }}
+            />
+            <span className="font-mono text-[10px] tracking-wide" style={{ color: "#7a8c76" }}>
+              {statusLabel}
+            </span>
+          </div>
+          {project.restricted && (
+            <div className="flex items-center gap-1.5">
+              <Lock size={10} className="flex-shrink-0" color="#7a8c76" />
+              <span className="font-mono text-[10px] tracking-wide" style={{ color: "#7a8c76" }}>
+                {t({ pt: "Divulgação restrita", en: "Restricted disclosure" })}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Detalhes — só aparece quando expandido */}
@@ -243,18 +253,20 @@ export function ProjectCard({
                   >
                     {t(project.description)}
                   </p>
-                  <div
-                    className="mt-4 flex items-center gap-2 font-mono text-xs"
-                    style={{ color: "#7a8c76" }}
-                  >
-                    <Lock size={11} className="flex-shrink-0" />
-                    <span>
-                      {t({
-                        pt: "Código privado — projeto de cliente real",
-                        en: "Private code — real client project",
-                      })}
-                    </span>
-                  </div>
+                  {project.clientCode && (
+                    <div
+                      className="mt-4 flex items-center gap-2 font-mono text-xs"
+                      style={{ color: "#7a8c76" }}
+                    >
+                      <Lock size={11} className="flex-shrink-0" />
+                      <span>
+                        {t({
+                          pt: "Código privado — projeto de cliente real",
+                          en: "Private code — real client project",
+                        })}
+                      </span>
+                    </div>
+                  )}
                   <p className="mt-3 font-mono text-xs" style={{ color: project.color }}>
                     {t(project.role)}
                   </p>

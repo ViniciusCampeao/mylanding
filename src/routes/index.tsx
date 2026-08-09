@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
 import { GsapProvider } from "@/components/providers/gsap-provider";
-import { ProjectLinkProvider } from "@/components/providers/project-link-provider";
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/sections/hero";
 import { AboutSection } from "@/components/sections/about";
@@ -19,22 +18,20 @@ function Home() {
     <SmoothScrollProvider>
       {/* Navbar e Hero não dependem de ScrollTrigger — montam imediatamente */}
       <Navbar />
-      <ProjectLinkProvider>
-        <main>
-          <HeroSection />
-          {/* GsapProvider envolve só as seções que usam ScrollTrigger/DrawSVG.
-              Os plugins carregam antes delas montarem, eliminando a race condition. */}
-          <GsapProvider>
-            <AboutSection />
-            <PortfolioSection />
-            <InfraSection />
-            {/* Skills fica ao final, antes do contato — resume o que já foi mostrado. */}
-            <SkillsSection />
-          </GsapProvider>
-          {/* Contact não usa GSAP diretamente */}
-          <ContactSection />
-        </main>
-      </ProjectLinkProvider>
+      <main>
+        <HeroSection />
+        {/* GsapProvider envolve só as seções que usam ScrollTrigger/DrawSVG.
+            Os plugins carregam antes delas montarem, eliminando a race condition. */}
+        <GsapProvider>
+          <AboutSection />
+          <PortfolioSection />
+          <InfraSection />
+          {/* Skills fica ao final, antes do contato — resume o que já foi mostrado. */}
+          <SkillsSection />
+        </GsapProvider>
+        {/* Contact não usa GSAP diretamente */}
+        <ContactSection />
+      </main>
     </SmoothScrollProvider>
   );
 }

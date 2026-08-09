@@ -39,11 +39,15 @@ export interface Project {
   description: L;
   stack: string[];
   role: L;
-  status: "production" | "active" | "archived";
+  status: "production" | "active" | "sporadic" | "archived";
   category: ProjectCategoryId;
   /** Nome do ícone lucide-react (ex.: "Server", "Sprout") usado como visual do card. */
   icon: string;
   highlight?: boolean;
+  /** true só para trabalho pago de cliente com código realmente confidencial. */
+  clientCode?: boolean;
+  /** true para pesquisa com divulgação restrita (ex.: IC patenteada). */
+  restricted?: boolean;
   port?: number;
   githubUrl?: string;
   liveUrl?: string;

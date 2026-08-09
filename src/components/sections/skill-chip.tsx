@@ -3,13 +3,12 @@ import { AnimatePresence, motion } from "motion/react";
 import { Magnetic } from "@/components/ux/magnetic";
 import { useT } from "@/i18n/locale-context";
 import { content } from "@/content/content";
-import { useProjectLink } from "@/components/providers/project-link-provider";
 
 /* ─────────────────────────────────────────────────────────────
-   Chip de skill ligado a um projeto.
-   Desktop: passar o mouse mostra o card com o projeto.
-   Qualquer dispositivo: clicar/tocar no chip vai direto pro
-            projeto — sem etapa intermediária.
+   Chip de skill ligado a um projeto — só informativo. Passar o
+   mouse (ou tocar, no mobile) mostra qual projeto usa essa skill.
+   Sem navegação: já teve um "ir direto pro projeto" aqui, mas o
+   scroll/expand entre seções quebrava em produção — removido.
    ───────────────────────────────────────────────────────────── */
 
 export function SkillChip({
@@ -24,18 +23,8 @@ export function SkillChip({
   isMobile: boolean;
 }) {
   const t = useT();
-  const { focusProject } = useProjectLink();
   const [open, setOpen] = useState(false);
   const project = content.portfolio.projects.find((p) => p.id === projectId);
-
-  function goToProject() {
-    focusProject(projectId);
-    setOpen(false);
-  }
-
-  function handleChipClick() {
-    goToProject();
-  }
 
   return (
     <div
@@ -46,7 +35,7 @@ export function SkillChip({
       <Magnetic strength={isMobile ? 0 : 0.28}>
         <motion.button
           type="button"
-          onClick={handleChipClick}
+          onClick={() => isMobile && setOpen((v) => !v)}
           className="skill-chip cursor-pointer select-none font-mono text-xs tracking-widest uppercase"
           style={{
             color: "#c3d6bd",
@@ -78,14 +67,13 @@ export function SkillChip({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.96 }}
             transition={{ duration: 0.18 }}
-            className="absolute left-1/2 top-full z-20 mt-2 w-56 -translate-x-1/2"
+            className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 w-56 -translate-x-1/2"
             style={{
               borderRadius: "4px",
               border: `1px solid ${project.color}40`,
               background: "#020403f7",
               padding: "12px 14px",
               boxShadow: "0 8px 24px rgb(0 0 0 / 0.5)",
-              pointerEvents: isMobile ? "auto" : "none",
             }}
           >
             <p
@@ -103,16 +91,12 @@ export function SkillChip({
             <p
               className="mt-1 leading-snug"
               style={{
-                fontFamily: "DM Serif Text, serif",
-                fontStyle: "italic",
+                fontFamily: "var(--font-sans)",
                 color: "#a3b89c",
-                fontSize: "0.8rem",
+                fontSize: "0.85rem",
               }}
             >
               {t(project.tagline)}
-            </p>
-            <p className="mt-2 font-mono text-[10px]" style={{ color: project.color }}>
-              {t({ pt: "Ver projeto →", en: "View project →" })}
             </p>
           </motion.div>
         )}
