@@ -1,16 +1,74 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useT } from "@/i18n/locale-context";
-import { content } from "@/content/content";
 import type { Project } from "@/content/types";
-import { X, Lock } from "lucide-react";
+import {
+  X,
+  Lock,
+  Star,
+  ChevronDown,
+  Building2,
+  Pill,
+  UtensilsCrossed,
+  Clapperboard,
+  Microscope,
+  Server,
+  Gauge,
+  BatteryCharging,
+  Activity,
+  Music,
+  BrainCircuit,
+  Sprout,
+  Radio,
+  Cpu,
+  Antenna,
+  AudioWaveform,
+  Bot,
+  ListChecks,
+  Gamepad2,
+  Box,
+  type LucideIcon,
+} from "lucide-react";
 import { ProjectDiagram } from "./project-diagram";
 
 /* ─────────────────────────────────────────────────────────────
-   Card de projeto com expansão inline (layoutId compartilhado
-   com o grid do PortfolioSection). Clicar expande, mostrando
-   descrição completa, stack e — quando existir — o diagrama
-   de arquitetura.
+   Card de projeto — visual-first: ícone + título + uma linha de
+   impacto. Texto longo (descrição, stack completa, papel) só
+   aparece expandido, evitando poluição visual no grid.
    ───────────────────────────────────────────────────────────── */
+
+const ICONS: Record<string, LucideIcon> = {
+  Building2,
+  Pill,
+  UtensilsCrossed,
+  Clapperboard,
+  Microscope,
+  Server,
+  Gauge,
+  BatteryCharging,
+  Activity,
+  Music,
+  BrainCircuit,
+  Sprout,
+  Radio,
+  Cpu,
+  Antenna,
+  AudioWaveform,
+  Bot,
+  ListChecks,
+  Gamepad2,
+};
+
+const STATUS_COLOR: Record<Project["status"], string> = {
+  production: "#4ecb6b",
+  active: "#4ab0e0",
+  archived: "#6b7d66",
+};
+
+const STATUS_LABEL: Record<Project["status"], { pt: string; en: string }> = {
+  production: { pt: "Em produção", en: "In production" },
+  active: { pt: "Ativo", en: "Active" },
+  archived: { pt: "Arquivado", en: "Archived" },
+};
 
 export function ProjectCard({
   project,
@@ -26,6 +84,9 @@ export function ProjectCard({
   onClose: () => void;
 }) {
   const t = useT();
+  const Icon = ICONS[project.icon] ?? Box;
+
+  const statusLabel = t(STATUS_LABEL[project.status]);
 
   return (
     <motion.article
@@ -37,50 +98,91 @@ export function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.5,
-        delay: index * 0.07,
+        delay: index * 0.05,
         layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
       }}
       className="relative overflow-hidden"
       style={{
-        borderRadius: "4px",
-        border: `1px solid ${project.color}${expanded ? "60" : "28"}`,
-        background: `#050808`,
+        borderRadius: "6px",
+        border: `1px solid ${project.color}${expanded ? "70" : "30"}`,
+        background: "#060a08",
         cursor: expanded ? "default" : "pointer",
         gridColumn: expanded ? "1 / -1" : undefined,
       }}
-      whileHover={expanded ? {} : { scale: 1.01, transition: { duration: 0.2 } }}
+      whileHover={
+        expanded
+          ? {}
+          : { scale: 1.015, borderColor: `${project.color}60`, transition: { duration: 0.2 } }
+      }
     >
       {/* Fundo radial do projeto */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background: `radial-gradient(ellipse 70% 60% at 20% 20%, ${project.color}14, transparent 65%)`,
+          background: `radial-gradient(ellipse 75% 65% at 15% 15%, ${project.color}1c, transparent 65%)`,
         }}
       />
 
-      <div className="relative p-5 sm:p-8">
-        {/* Cabeçalho sempre visível */}
-        <div className="mb-3 flex items-start justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-            <span
-              className="font-mono text-xs tracking-[0.3em] uppercase"
-              style={{ color: `${project.color}` }}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            {project.highlight && (
-              <span
-                className="font-mono text-[10px] tracking-widest uppercase px-2 py-0.5"
+      <div className="relative p-5 sm:p-7">
+        {/* Cabeçalho: ícone + título + tagline, sempre visível */}
+        <div className="flex items-start gap-4">
+          <div
+            className="flex flex-shrink-0 items-center justify-center"
+            style={{
+              width: expanded ? 60 : 48,
+              height: expanded ? 60 : 48,
+              borderRadius: "8px",
+              background: `${project.color}1a`,
+              border: `1px solid ${project.color}45`,
+              transition: "width 0.2s, height 0.2s",
+            }}
+          >
+            <Icon
+              size={expanded ? 30 : 24}
+              color={project.color}
+              strokeWidth={1.6}
+              style={{ transition: "all 0.2s" }}
+            />
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <h3
+                className="font-display truncate tracking-wide uppercase"
                 style={{
-                  background: `${project.color}15`,
-                  color: project.color,
-                  border: `1px solid ${project.color}25`,
-                  borderRadius: "2px",
+                  fontSize: expanded
+                    ? "clamp(1.6rem, 4.5vw, 2.4rem)"
+                    : "clamp(1.15rem, 3.6vw, 1.5rem)",
+                  color: "#eef4e8",
+                  lineHeight: 1.1,
                 }}
               >
-                {t({ pt: "Destaque", en: "Featured" })}
-              </span>
-            )}
+                {t(project.title)}
+              </h3>
+              {project.highlight && (
+                <Star
+                  size={14}
+                  className="flex-shrink-0"
+                  fill={project.color}
+                  color={project.color}
+                  strokeWidth={0}
+                />
+              )}
+            </div>
+            <p
+              className="mt-1 leading-snug"
+              style={{
+                fontFamily: "var(--font-sans)",
+                color: "#a9bfa1",
+                fontSize: "clamp(0.88rem, 2.4vw, 0.98rem)",
+                display: "-webkit-box",
+                WebkitLineClamp: expanded ? undefined : 2,
+                WebkitBoxOrient: "vertical",
+                overflow: expanded ? "visible" : "hidden",
+              }}
+            >
+              {t(project.tagline)}
+            </p>
           </div>
 
           {expanded ? (
@@ -90,43 +192,34 @@ export function ProjectCard({
                 e.stopPropagation();
                 onClose();
               }}
-              className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm transition-colors sm:h-7 sm:w-7"
-              style={{ border: `1px solid ${project.color}30`, color: `${project.color}80` }}
+              className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm transition-colors"
+              style={{ border: `1px solid ${project.color}40`, color: "#c3d6bd" }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.color = "#e2ead9";
-                (e.currentTarget as HTMLElement).style.borderColor = `${project.color}80`;
+                (e.currentTarget as HTMLElement).style.color = "#f0f5ec";
+                (e.currentTarget as HTMLElement).style.borderColor = `${project.color}90`;
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.color = `${project.color}80`;
-                (e.currentTarget as HTMLElement).style.borderColor = `${project.color}30`;
+                (e.currentTarget as HTMLElement).style.color = "#c3d6bd";
+                (e.currentTarget as HTMLElement).style.borderColor = `${project.color}40`;
               }}
             >
               <X size={13} />
             </button>
-          ) : null}
+          ) : (
+            <ChevronDown size={16} className="mt-1 flex-shrink-0" color="#4a5a4a" />
+          )}
         </div>
 
-        <h3
-          className="font-display mb-1 tracking-wider uppercase"
-          style={{
-            fontSize: expanded ? "clamp(1.75rem, 5vw, 2.8rem)" : "clamp(1.35rem, 4.5vw, 2.2rem)",
-            color: "#e2ead9",
-            lineHeight: 1.05,
-          }}
-        >
-          {t(project.title)}
-        </h3>
-        <p
-          className="mb-4"
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontStyle: "italic",
-            color: "#8a9c84",
-            fontSize: "clamp(0.9rem, 2.6vw, 1rem)",
-          }}
-        >
-          {t(project.tagline)}
-        </p>
+        {/* Status — discreto, sempre visível */}
+        <div className="mt-4 flex items-center gap-1.5">
+          <span
+            className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
+            style={{ background: STATUS_COLOR[project.status] }}
+          />
+          <span className="font-mono text-[10px] tracking-wide" style={{ color: "#7a8c76" }}>
+            {statusLabel}
+          </span>
+        </div>
 
         {/* Detalhes — só aparece quando expandido */}
         <AnimatePresence>
@@ -138,21 +231,21 @@ export function ProjectCard({
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
                 <div>
                   <p
-                    className="mb-6 leading-relaxed"
+                    className="leading-relaxed"
                     style={{
-                      fontFamily: "DM Serif Text, serif",
-                      color: "#9aab94",
-                      fontSize: "clamp(0.9rem, 2.6vw, 1rem)",
+                      fontFamily: "var(--font-sans)",
+                      color: "#c1d1bb",
+                      fontSize: "clamp(0.95rem, 2.4vw, 1.05rem)",
                     }}
                   >
                     {t(project.description)}
                   </p>
                   <div
-                    className="flex items-center gap-2 font-mono text-xs"
-                    style={{ color: "#5a7a56" }}
+                    className="mt-4 flex items-center gap-2 font-mono text-xs"
+                    style={{ color: "#7a8c76" }}
                   >
                     <Lock size={11} className="flex-shrink-0" />
                     <span>
@@ -162,11 +255,14 @@ export function ProjectCard({
                       })}
                     </span>
                   </div>
+                  <p className="mt-3 font-mono text-xs" style={{ color: project.color }}>
+                    {t(project.role)}
+                  </p>
                 </div>
                 <div>
                   <p
                     className="mb-3 font-mono text-[10px] tracking-widest uppercase"
-                    style={{ color: `${project.color}80` }}
+                    style={{ color: "#7a8c76" }}
                   >
                     {t({ pt: "Stack", en: "Stack" })}
                   </p>
@@ -176,9 +272,9 @@ export function ProjectCard({
                         key={tech}
                         className="font-mono text-xs tracking-wide"
                         style={{
-                          background: `${project.color}18`,
-                          color: project.color,
-                          border: `1px solid ${project.color}25`,
+                          background: `${project.color}14`,
+                          color: "#dce8d6",
+                          border: `1px solid ${project.color}35`,
                           borderRadius: "2px",
                           padding: "4px 10px",
                         }}
@@ -187,9 +283,6 @@ export function ProjectCard({
                       </span>
                     ))}
                   </div>
-                  <p className="mt-4 font-mono text-xs" style={{ color: `${project.color}90` }}>
-                    {t(project.role)}
-                  </p>
                 </div>
               </div>
 
@@ -197,7 +290,7 @@ export function ProjectCard({
                 <div className="mt-6">
                   <p
                     className="mb-3 font-mono text-[10px] tracking-widest uppercase"
-                    style={{ color: `${project.color}80` }}
+                    style={{ color: "#7a8c76" }}
                   >
                     {t({ pt: "Arquitetura", en: "Architecture" })}
                   </p>
@@ -207,45 +300,6 @@ export function ProjectCard({
             </motion.div>
           )}
         </AnimatePresence>
-
-        {/* Footer sempre visível (stack prévia + status) */}
-        {!expanded && (
-          <div>
-            <div className="mb-3 flex flex-wrap gap-2">
-              {project.stack.slice(0, 4).map((tech) => (
-                <span
-                  key={tech}
-                  className="font-mono text-xs tracking-wide"
-                  style={{
-                    background: `${project.color}12`,
-                    color: project.color,
-                    border: `1px solid ${project.color}20`,
-                    borderRadius: "2px",
-                    padding: "3px 8px",
-                  }}
-                >
-                  {tech}
-                </span>
-              ))}
-              {project.stack.length > 4 && (
-                <span
-                  className="font-mono text-xs"
-                  style={{
-                    color: "#6b7d66",
-                    borderRadius: "2px",
-                    padding: "3px 8px",
-                    border: "1px solid rgb(74 122 74 / 0.15)",
-                  }}
-                >
-                  +{project.stack.length - 4}
-                </span>
-              )}
-            </div>
-            <p className="font-mono text-sm" style={{ color: `${project.color}80` }}>
-              {t(content.portfolio.viewProject)} →
-            </p>
-          </div>
-        )}
       </div>
     </motion.article>
   );

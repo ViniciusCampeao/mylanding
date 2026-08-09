@@ -41,6 +41,8 @@ export interface Project {
   role: L;
   status: "production" | "active" | "archived";
   category: ProjectCategoryId;
+  /** Nome do ícone lucide-react (ex.: "Server", "Sprout") usado como visual do card. */
+  icon: string;
   highlight?: boolean;
   port?: number;
   githubUrl?: string;

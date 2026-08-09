@@ -53,7 +53,11 @@ export function PortfolioSection() {
         </h2>
         <p
           className="mb-10 max-w-lg"
-          style={{ fontFamily: "DM Serif Text, serif", fontStyle: "italic", color: "#8a9c9a" }}
+          style={{
+            fontFamily: "var(--font-sans)",
+            color: "#a9bfa1",
+            fontSize: "clamp(0.95rem, 2.4vw, 1.05rem)",
+          }}
         >
           {t(content.portfolio.sectionSubtitle)}
         </p>
@@ -85,7 +89,7 @@ export function PortfolioSection() {
 
                 <motion.div
                   layout
-                  className="grid gap-4 sm:grid-cols-2"
+                  className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {projects.map((project, i) => (

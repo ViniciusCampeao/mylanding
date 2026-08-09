@@ -117,6 +117,7 @@ export const content: Content = {
       /* ── 01 · Produção ──────────────────────────────────── */
       {
         id: "cartao-de-todos",
+        icon: "Building2",
         title: l("Cartão de Todos", "Cartão de Todos"),
         tagline: l(
           "Plataforma interna & automação operacional",
@@ -138,6 +139,7 @@ export const content: Content = {
       },
       {
         id: "recompra-farma",
+        icon: "Pill",
         title: l("Recompra Farma", "Recompra Farma"),
         tagline: l("Automação de relacionamento via WhatsApp", "WhatsApp relationship automation"),
         description: l(
@@ -173,6 +175,7 @@ export const content: Content = {
       },
       {
         id: "mindrabar",
+        icon: "UtensilsCrossed",
         title: l("Mindrabar", "Mindrabar"),
         tagline: l("Comanda digital para cliente real", "Digital ordering system for real client"),
         description: l(
@@ -189,6 +192,7 @@ export const content: Content = {
       },
       {
         id: "shorts-pipeline",
+        icon: "Clapperboard",
         title: l("Shorts Pipeline", "Shorts Pipeline"),
         tagline: l("Automação de vídeos curtos com IA", "AI-powered short video automation"),
         description: l(
@@ -206,6 +210,7 @@ export const content: Content = {
       /* ── 02 · Pesquisa ──────────────────────────────────── */
       {
         id: "colonias-bacterianas",
+        icon: "Microscope",
         title: l("Contagem de Colônias Bacterianas", "Bacterial Colony Counting"),
         tagline: l(
           "Visão computacional aplicada à microbiologia",
@@ -226,6 +231,7 @@ export const content: Content = {
       /* ── 03 · Infraestrutura ─────────────────────────────── */
       {
         id: "self-hosted-infrastructure",
+        icon: "Server",
         title: l("Self-Hosted Infrastructure", "Self-Hosted Infrastructure"),
         tagline: l(
           "Minha VPS, Docker, redes e observabilidade",
@@ -287,6 +293,7 @@ export const content: Content = {
       },
       {
         id: "cyd-monitor",
+        icon: "Gauge",
         title: l("Infrastructure Monitor — CYD", "Infrastructure Monitor — CYD"),
         tagline: l(
           "Painel físico da infraestrutura em tempo real",
@@ -338,6 +345,7 @@ export const content: Content = {
       },
       {
         id: "nobreak",
+        icon: "BatteryCharging",
         title: l("Nobreak Próprio", "Custom UPS"),
         tagline: l("Eletrônica aplicada à infraestrutura", "Electronics applied to infrastructure"),
         description: l(
@@ -360,6 +368,7 @@ export const content: Content = {
       },
       {
         id: "monitoring",
+        icon: "Activity",
         title: l("Stack de Monitoramento", "Monitoring Stack"),
         tagline: l("Observabilidade total da infraestrutura", "Full infrastructure observability"),
         description: l(
@@ -375,6 +384,7 @@ export const content: Content = {
       },
       {
         id: "ytmp3",
+        icon: "Music",
         title: l("ytmp3", "ytmp3"),
         tagline: l("Conversor YouTube → MP3 self-hosted", "Self-hosted YouTube → MP3 converter"),
         description: l(
@@ -392,6 +402,7 @@ export const content: Content = {
       /* ── 04 · Embedded & IoT ─────────────────────────────── */
       {
         id: "ai-home-assistant",
+        icon: "BrainCircuit",
         title: l("AI Home Assistant", "AI Home Assistant"),
         tagline: l(
           "IA própria + ESP32 como interface física",
@@ -426,6 +437,7 @@ export const content: Content = {
       },
       {
         id: "smart-farming",
+        icon: "Sprout",
         title: l("Smart Farming", "Smart Farming"),
         tagline: l("Sensoriamento e automação de cultivo", "Crop sensing and automation"),
         description: l(
@@ -478,6 +490,7 @@ export const content: Content = {
       },
       {
         id: "drone-lora",
+        icon: "Radio",
         title: l("Drone com Telemetria LoRa", "LoRa Telemetry Drone"),
         tagline: l(
           "Comunicação de longo alcance e eletrônica embarcada",
@@ -495,6 +508,7 @@ export const content: Content = {
       },
       {
         id: "esp32-home-lab",
+        icon: "Cpu",
         title: l("ESP32 Home Lab", "ESP32 Home Lab"),
         tagline: l("Experimentos e automações residenciais", "Home automation experiments"),
         description: l(
@@ -509,6 +523,7 @@ export const content: Content = {
       },
       {
         id: "nrfbox",
+        icon: "Antenna",
         title: l("nRFBox", "nRFBox"),
         tagline: l("Interface wireless / embarcada", "Wireless / embedded interface"),
         description: l(
@@ -523,6 +538,7 @@ export const content: Content = {
       },
       {
         id: "esp32-audio-lab",
+        icon: "AudioWaveform",
         title: l("ESP32 Audio Lab", "ESP32 Audio Lab"),
         tagline: l("Áudio digital com I2S", "Digital audio over I2S"),
         description: l(
@@ -539,6 +555,7 @@ export const content: Content = {
       /* ── 05 · Robótica ───────────────────────────────────── */
       {
         id: "robotica-obr",
+        icon: "Bot",
         title: l("Robótica — SESI / OBR", "Robotics — SESI / OBR"),
         tagline: l("Robótica autônoma no ensino médio", "Autonomous robotics in high school"),
         description: l(
@@ -555,6 +572,7 @@ export const content: Content = {
       /* ── 06 · Software & Produtividade ──────────────────── */
       {
         id: "task-focus",
+        icon: "ListChecks",
         title: l("Task Focus", "Task Focus"),
         tagline: l("Agenda adaptativa", "Adaptive task agenda"),
         description: l(
@@ -569,6 +587,7 @@ export const content: Content = {
       },
       {
         id: "retro-gaming-cyd",
+        icon: "Gamepad2",
         title: l("Retro Gaming — CYD", "Retro Gaming — CYD"),
         tagline: l("Console retrô num ESP32 de US$10", "A retro console on a $10 ESP32"),
         description: l(
