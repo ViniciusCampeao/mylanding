@@ -83,8 +83,8 @@ export const content: Content = {
 
   about: {
     manifesto: l(
-      "Sou desenvolvedor full-stack com foco em web. Trabalho com TypeScript, React, Next.js e Tailwind para criar soluções customizadas, automações e integrações robustas. Mas não fico preso ao navegador: sou sysadmin da minha infraestrutura (Linux, Docker, VPS), construo com ESP32 e Arduino, e mantenho um home lab para explorar redes, eletrônica e IoT. Esse conhecimento transversal me permite pensar em problemas além da interface e entregar sistemas completos",
-      "I'm a full-stack developer with a focus on the web. I work with TypeScript, React, Next.js, and Tailwind to create custom solutions, automations, and robust integrations. But I don't stay confined to the browser: I'm a sysadmin of my own infrastructure (Linux, Docker, VPS), I build with ESP32 and Arduino, and I maintain a home lab to explore networks, electronics, and IoT. This cross-cutting knowledge allows me to think about problems beyond the interface and deliver complete systems.",
+      "Sou desenvolvedor full-stack com foco em sistemas completos, do código à infraestrutura. Trabalho com TypeScript, React, Next.js e Node.js para criar soluções customizadas, automações e integrações de pagamento robustas — comecei integrando pagamentos ainda no início da carreira e hoje isso é uma das minhas frentes mais fortes, com integração PIX de ponta a ponta. Mas não fico preso ao navegador: sou sysadmin da minha própria infraestrutura (Linux, Docker, VPS), projeto e produzo hardware de pagamento — como minha vending machine autônoma, com firmware, cobrança PIX e liberação de produto em tempo real, rodando 24/7 sem intervenção manual — e mantenho um home lab para explorar redes, eletrônica e IoT. Esse conhecimento transversal me permite pensar em problemas além da interface e entregar sistemas completos, do circuito ao servidor.",
+      "I'm a full-stack developer focused on complete systems, from code to infrastructure. I work with TypeScript, React, Next.js, and Node.js to build custom solutions, automations, and robust payment integrations — I started integrating payments early in my career, and today it's one of my strongest areas, with end-to-end PIX integration. But I don't stay confined to the browser: I'm a sysadmin of my own infrastructure (Linux, Docker, VPS), I design and build payment hardware — like my autonomous vending machine, with firmware, PIX billing, and real-time product release, running 24/7 with no manual intervention — and I maintain a home lab to explore networks, electronics, and IoT. This cross-cutting knowledge lets me think about problems beyond the interface and deliver complete systems, from circuit to server.",
     ),
     researchTitle: l("Iniciação Científica", "Undergraduate Research"),
     researchDescription: l(
@@ -741,6 +741,29 @@ export const content: Content = {
     sectionTitle: l("Experiência", "Experience"),
     entries: [
       {
+        id: "wyd-server",
+        company: "WYD Server",
+        role: l(
+          "Desenvolvedor Full Stack — Node.js (sustentação)",
+          "Full Stack Developer — Node.js (maintenance & ops)",
+        ),
+        period: l("Primeira experiência técnica", "First technical experience"),
+        description: [
+          l(
+            "Backend em Node.js para um servidor de jogo online (MMORPG), incluindo integração de pagamentos para o sistema de itens e moedas do jogo.",
+            "Node.js backend for an online game server (MMORPG), including payment integration for the game's item and currency system.",
+          ),
+          l(
+            "Atuação focada em sustentação: manter o serviço no ar, corrigir bugs em produção e garantir a estabilidade das transações.",
+            "Focused on maintenance and ops: keeping the service online, fixing production bugs, and ensuring transaction stability.",
+          ),
+          l(
+            "Onde aprendi front-end primeiro, depois back-end, APIs e integrações — a base de tudo que faço hoje.",
+            "Where I learned front-end first, then back-end, APIs, and integrations — the foundation of everything I do today.",
+          ),
+        ],
+      },
+      {
         id: "autonomo",
         company: "Autônomo",
         role: l(
@@ -796,29 +819,6 @@ export const content: Content = {
           l(
             "Configuração de roteadores, switches e endereçamento IP. Manutenção de máquinas e suporte a servidores.",
             "Router, switch configuration, and IP addressing. Machine maintenance and server support.",
-          ),
-        ],
-      },
-      {
-        id: "wyd-server",
-        company: "WYD Server",
-        role: l(
-          "Desenvolvedor Full Stack — Node.js (sustentação)",
-          "Full Stack Developer — Node.js (maintenance & ops)",
-        ),
-        period: l("Primeira experiência técnica", "First technical experience"),
-        description: [
-          l(
-            "Backend em Node.js para um servidor de jogo online (MMORPG), incluindo integração de pagamentos para o sistema de itens e moedas do jogo.",
-            "Node.js backend for an online game server (MMORPG), including payment integration for the game's item and currency system.",
-          ),
-          l(
-            "Atuação focada em sustentação: manter o serviço no ar, corrigir bugs em produção e garantir a estabilidade das transações.",
-            "Focused on maintenance and ops: keeping the service online, fixing production bugs, and ensuring transaction stability.",
-          ),
-          l(
-            "Onde aprendi front-end primeiro, depois back-end, APIs e integrações — a base de tudo que faço hoje.",
-            "Where I learned front-end first, then back-end, APIs, and integrations — the foundation of everything I do today.",
           ),
         ],
       },
