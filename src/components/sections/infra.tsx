@@ -112,9 +112,16 @@ export function InfraSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
+          className="hidden sm:block"
         >
           <InfraDiagram />
         </motion.div>
+        <p className="font-mono text-xs sm:hidden" style={{ color: "#5a7a56" }}>
+          {t({
+            pt: "Diagrama interativo completo disponível em telas maiores.",
+            en: "Full interactive diagram available on larger screens.",
+          })}
+        </p>
 
         {/* Experiência */}
         <div className="mt-24">

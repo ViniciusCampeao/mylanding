@@ -18,7 +18,7 @@ export function SkillChip({
   isMobile,
 }: {
   name: string;
-  projectId: string;
+  projectId?: string;
   index: number;
   isMobile: boolean;
 }) {

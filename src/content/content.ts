@@ -118,7 +118,16 @@ export const content: Content = {
           { name: "Python", projectId: "cartao-de-todos" },
           { name: "NestJS", projectId: "recompra-farma" },
           { name: "PostgreSQL", projectId: "recompra-farma" },
+        ],
+      },
+      {
+        id: "pagamentos",
+        label: l("Pagamentos", "Payments"),
+        items: [
           { name: "Integração PIX", projectId: "vending-machine" },
+          { name: "Gateways de Pagamento", projectId: "mindrabar" },
+          { name: "Webhooks & Confirmação Assíncrona", projectId: "vending-machine" },
+          { name: "Redis / Filas", projectId: "recompra-farma" },
         ],
       },
       {
@@ -128,6 +137,7 @@ export const content: Content = {
           { name: "Docker", projectId: "self-hosted-infrastructure" },
           { name: "Linux / VPS", projectId: "self-hosted-infrastructure" },
           { name: "Cloudflare Tunnel", projectId: "self-hosted-infrastructure" },
+          { name: "CI/CD (GitHub Actions)", projectId: "self-hosted-infrastructure" },
         ],
       },
       {
@@ -138,6 +148,11 @@ export const content: Content = {
           { name: "OpenCV", projectId: "colonias-bacterianas" },
           { name: "Raspberry Pi", projectId: "colonias-bacterianas" },
         ],
+      },
+      {
+        id: "produtividade",
+        label: l("Produtividade & IA", "Productivity & AI"),
+        items: [{ name: "Claude Code" }],
       },
     ],
   },
@@ -157,11 +172,6 @@ export const content: Content = {
       { id: "infraestrutura", number: "03", label: l("Infraestrutura", "Infrastructure") },
       { id: "embedded-iot", number: "04", label: l("Embedded & IoT", "Embedded & IoT") },
       { id: "robotica", number: "05", label: l("Robótica", "Robotics") },
-      {
-        id: "software",
-        number: "06",
-        label: l("Software & Produtividade", "Software & Productivity"),
-      },
     ],
     projects: [
       /* ── 01 · Produção ──────────────────────────────────── */
@@ -675,38 +685,6 @@ export const content: Content = {
         status: "archived",
         category: "robotica",
         color: "#2a4a8a",
-      },
-
-      /* ── 06 · Software & Produtividade ──────────────────── */
-      {
-        id: "task-focus",
-        icon: "ListChecks",
-        title: l("Task Focus", "Task Focus"),
-        tagline: l("Agenda adaptativa", "Adaptive task agenda"),
-        description: l(
-          "Aplicativo desenvolvido para organizar tarefas com foco em execução e prioridade. Envia lembretes recorrentes e destaca continuamente a tarefa mais urgente, reduzindo a necessidade de manter mentalmente as próximas etapas do dia. Construí a ferramenta para resolver uma dificuldade que eu mesmo enfrentava na organização das minhas tarefas.",
-          "App built to organize tasks with a focus on execution and priority. It sends recurring reminders and continuously surfaces the most urgent task, cutting down the need to mentally track what's next. I built it to solve a difficulty I faced myself in organizing my own tasks.",
-        ),
-        stack: ["Android", "Notificações", "Priorização", "Agenda"],
-        role: l("Full stack (app Android)", "Full stack (Android app)"),
-        status: "active",
-        category: "software",
-        color: "#8a3a5a",
-      },
-      {
-        id: "retro-gaming-cyd",
-        icon: "Gamepad2",
-        title: l("Retro Gaming — CYD", "Retro Gaming — CYD"),
-        tagline: l("Console retrô num ESP32 de US$10", "A retro console on a $10 ESP32"),
-        description: l(
-          'Projeto experimental usando só um ESP32 com display CYD de 2,8" e cartão microSD para transformar o dispositivo em uma pequena plataforma portátil de jogos retrô — o desafio foi extrair o máximo de um hardware extremamente limitado.',
-          'Experimental project using nothing but an ESP32 with a 2.8" CYD display and a microSD card to turn the device into a small portable retro gaming platform — the challenge was squeezing the most out of extremely limited hardware.',
-        ),
-        stack: ["ESP32", "CYD", "microSD", "Firmware"],
-        role: l("Firmware e otimização de hardware", "Firmware and hardware optimization"),
-        status: "archived",
-        category: "software",
-        color: "#6a3a8a",
       },
     ],
   },

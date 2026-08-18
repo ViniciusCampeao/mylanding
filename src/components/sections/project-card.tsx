@@ -21,8 +21,6 @@ import {
   Radio,
   Cpu,
   Bot,
-  ListChecks,
-  Gamepad2,
   Box,
   type LucideIcon,
 } from "lucide-react";
@@ -50,8 +48,6 @@ const ICONS: Record<string, LucideIcon> = {
   Radio,
   Cpu,
   Bot,
-  ListChecks,
-  Gamepad2,
 };
 
 const STATUS_COLOR: Record<Project["status"], string> = {

@@ -7,8 +7,7 @@ export type ProjectCategoryId =
   | "pesquisa"
   | "infraestrutura"
   | "embedded-iot"
-  | "robotica"
-  | "software";
+  | "robotica";
 
 export interface ProjectCategory {
   id: ProjectCategoryId;
@@ -55,7 +54,7 @@ export interface Project {
 
 export interface SkillItem {
   name: string;
-  projectId: string;
+  projectId?: string;
 }
 
 export interface SkillGroup {
