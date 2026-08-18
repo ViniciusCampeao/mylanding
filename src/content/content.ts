@@ -41,14 +41,9 @@ export const content: Content = {
   hero: {
     scrollHint: l("Role para explorar", "Scroll to explore"),
     stats: [
-      { value: "19+", label: l("Projetos desenvolvidos", "Projects built") },
-      { value: "4 anos", label: l("Programando", "Years coding") },
+      { value: "5 anos", label: l("Programando", "Years coding") },
       { value: "10+", label: l("Automações construídas", "Automations built") },
       { value: "24/7", label: l("Infraestrutura própria", "Self-hosted infrastructure") },
-      {
-        value: "R$460+",
-        label: l("Faturados em 1 mês, projeto próprio", "Earned in 1 month, own project"),
-      },
     ],
   },
 
@@ -178,8 +173,8 @@ export const content: Content = {
           "Own machine with integrated PIX payment",
         ),
         description: l(
-          "Máquina de venda automática que projetei e construí do zero — hoje operando 24/7 em frente de casa como produto real, não protótipo. Envolve firmware embarcado para controle físico da máquina, backend de pagamentos com integração PIX (geração de cobrança, confirmação em tempo real e liberação do produto), uma interface de compra para o cliente final e monitoramento próprio de infraestrutura para garantir uptime. Rodando de forma totalmente autônoma, sem intervenção manual, já faturou mais de R$460 só neste mês.",
-          "Vending machine I designed and built from scratch — now running 24/7 outside my house as a real product, not a prototype. It involves embedded firmware for the machine's physical control, a payments backend with PIX integration (charge generation, real-time confirmation, and product release), a purchase interface for the end customer, and my own infrastructure monitoring to keep it up. Running fully autonomously, with no manual intervention, it has already earned over R$460 this month alone.",
+          "Máquina de venda automática que projetei e construí do zero — hoje operando 24/7 em frente de casa como produto real, não protótipo. Envolve firmware embarcado para controle físico da máquina, backend de pagamentos com integração PIX (geração de cobrança, confirmação em tempo real e liberação do produto), uma interface de compra para o cliente final e monitoramento próprio de infraestrutura para garantir uptime. Roda de forma totalmente autônoma, sem intervenção manual, processando pagamentos reais e gerando receita recorrente todos os dias.",
+          "Vending machine I designed and built from scratch — now running 24/7 outside my house as a real product, not a prototype. It involves embedded firmware for the machine's physical control, a payments backend with PIX integration (charge generation, real-time confirmation, and product release), a purchase interface for the end customer, and my own infrastructure monitoring to keep it up. It runs fully autonomously, with no manual intervention, processing real payments and generating recurring revenue every day.",
         ),
         stack: [
           "ESP32 / Firmware",

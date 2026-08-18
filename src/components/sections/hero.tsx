@@ -42,7 +42,7 @@ export function HeroSection() {
   return (
     <section
       ref={wrapperRef}
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden py-28 sm:py-24"
     >
       <ClientOnly fallback={<HeroFallback />}>
         <Suspense fallback={<HeroFallback />}>
@@ -86,7 +86,7 @@ export function HeroSection() {
           {/* Headline — DM Serif italic, a frase que vende */}
           <motion.p
             {...fadeUp(0.65)}
-            className="mt-6 max-w-xl text-lg leading-snug sm:mt-5 sm:text-2xl"
+            className="mt-5 max-w-xl text-lg leading-snug sm:mt-4 sm:text-2xl"
             style={{
               fontFamily: "DM Serif Text, Georgia, serif",
               fontStyle: "italic",
@@ -99,14 +99,14 @@ export function HeroSection() {
           {/* Subtítulo — explica o que isso significa na prática */}
           <motion.p
             {...fadeUp(0.75)}
-            className="mt-4 max-w-lg text-sm leading-relaxed sm:text-base"
+            className="mt-3 max-w-lg text-sm leading-relaxed sm:text-base"
             style={{ color: "#7a94a0" }}
           >
             {t(content.meta.subtitle)}
           </motion.p>
 
           {/* Tags */}
-          <motion.div {...fadeUp(0.85)} className="mt-5 flex flex-wrap justify-center gap-2">
+          <motion.div {...fadeUp(0.85)} className="mt-4 flex flex-wrap justify-center gap-2">
             {["React", "Node.js", "Docker", "VPS", "UTFPR"].map((tag) => (
               <span
                 key={tag}
@@ -126,7 +126,7 @@ export function HeroSection() {
           {/* Stats — prova concreta, números reais */}
           <motion.div
             {...fadeUp(0.95)}
-            className="mt-9 flex max-w-2xl flex-wrap justify-center gap-x-8 gap-y-5 sm:mt-10"
+            className="mt-7 flex max-w-2xl flex-wrap justify-center gap-x-8 gap-y-4 sm:mt-8"
           >
             {content.hero.stats.map((stat) => (
               <div key={t(stat.label)} className="flex flex-col items-center">
@@ -149,7 +149,7 @@ export function HeroSection() {
           {/* Scroll hint — some conforme rola */}
           <motion.div
             {...fadeUp(1.2)}
-            className="mt-8 sm:mt-12"
+            className="mt-6 sm:mt-8"
             style={{ opacity: reduced ? 1 : hintOpacity, y: reduced ? 0 : hintY }}
           >
             <motion.div
