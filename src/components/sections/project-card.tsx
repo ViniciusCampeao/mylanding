@@ -6,6 +6,7 @@ import {
   Lock,
   Star,
   ChevronDown,
+  Banknote,
   Building2,
   Pill,
   UtensilsCrossed,
@@ -36,6 +37,7 @@ import { ProjectDiagram } from "./project-diagram";
    ───────────────────────────────────────────────────────────── */
 
 const ICONS: Record<string, LucideIcon> = {
+  Banknote,
   Building2,
   Pill,
   UtensilsCrossed,
@@ -253,20 +255,6 @@ export function ProjectCard({
                   >
                     {t(project.description)}
                   </p>
-                  {project.clientCode && (
-                    <div
-                      className="mt-4 flex items-center gap-2 font-mono text-xs"
-                      style={{ color: "#7a8c76" }}
-                    >
-                      <Lock size={11} className="flex-shrink-0" />
-                      <span>
-                        {t({
-                          pt: "Código privado — projeto de cliente real",
-                          en: "Private code — real client project",
-                        })}
-                      </span>
-                    </div>
-                  )}
                   <p className="mt-3 font-mono text-xs" style={{ color: project.color }}>
                     {t(project.role)}
                   </p>

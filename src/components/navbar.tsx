@@ -7,6 +7,7 @@ import { useT } from "@/i18n/locale-context";
 import { content } from "@/content/content";
 
 const sections = [
+  { id: "what-i-do", label: content.nav.whatIDo },
   { id: "about", label: content.nav.about },
   { id: "portfolio", label: content.nav.portfolio },
   { id: "infra", label: content.nav.infra },

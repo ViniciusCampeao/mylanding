@@ -4,6 +4,14 @@ export const content: Content = {
   meta: {
     name: "Vinícius Campeão",
     tagline: l(
+      "Eu construo sistemas — do código à infraestrutura.",
+      "I build systems — from code to infrastructure.",
+    ),
+    subtitle: l(
+      "Desenvolvedor Full Stack com experiência em aplicações web, automação, infraestrutura Linux, Docker, VPS e projetos embarcados.",
+      "Full Stack Developer with experience in web applications, automation, Linux infrastructure, Docker, VPS, and embedded projects.",
+    ),
+    role: l(
       "Desenvolvedor Full Stack • Infraestrutura • DevOps",
       "Full Stack Developer • Infrastructure • DevOps",
     ),
@@ -27,10 +35,55 @@ export const content: Content = {
     portfolio: l("Projetos", "Projects"),
     infra: l("Infraestrutura", "Infrastructure"),
     contact: l("Contato", "Contact"),
+    whatIDo: l("O que eu faço", "What I do"),
   },
 
   hero: {
     scrollHint: l("Role para explorar", "Scroll to explore"),
+    stats: [
+      { value: "19+", label: l("Projetos desenvolvidos", "Projects built") },
+      { value: "4 anos", label: l("Programando", "Years coding") },
+      { value: "10+", label: l("Automações construídas", "Automations built") },
+      { value: "24/7", label: l("Infraestrutura própria", "Self-hosted infrastructure") },
+      {
+        value: "R$460+",
+        label: l("Faturados em 1 mês, projeto próprio", "Earned in 1 month, own project"),
+      },
+    ],
+  },
+
+  whatIDo: {
+    sectionTitle: l("O que eu faço", "What I do"),
+    sectionSubtitle: l(
+      "Do circuito ao servidor, do firmware à interface.",
+      "From circuit to server, from firmware to interface.",
+    ),
+    groups: [
+      {
+        id: "fullstack",
+        icon: "Code2",
+        label: l("Full Stack", "Full Stack"),
+        items: ["React", "Next.js", "Node.js", "TypeScript", "APIs", "PostgreSQL / PocketBase"],
+      },
+      {
+        id: "infra-devops",
+        icon: "Server",
+        label: l("Infra / DevOps", "Infra / DevOps"),
+        items: ["Linux", "Docker", "VPS", "Cloudflare", "CI/CD", "Networking"],
+      },
+      {
+        id: "automacao",
+        icon: "Workflow",
+        label: l("Automação", "Automation"),
+        items: ["Bots", "Integrações", "APIs", "Automação de processos", "Excel", "WhatsApp"],
+      },
+      {
+        id: "embarcados",
+        icon: "Cpu",
+        label: l("Embarcados / IoT", "Embedded / IoT"),
+        items: ["ESP32", "NRF24", "LoRa", "Sensores", "Displays", "Automação residencial"],
+      },
+    ],
   },
 
   about: {
@@ -69,6 +122,7 @@ export const content: Content = {
           { name: "Python", projectId: "cartao-de-todos" },
           { name: "NestJS", projectId: "recompra-farma" },
           { name: "PostgreSQL", projectId: "recompra-farma" },
+          { name: "Integração PIX", projectId: "vending-machine" },
         ],
       },
       {
@@ -116,6 +170,54 @@ export const content: Content = {
     projects: [
       /* ── 01 · Produção ──────────────────────────────────── */
       {
+        id: "vending-machine",
+        icon: "Banknote",
+        title: l("Vending Machine Autônoma", "Autonomous Vending Machine"),
+        tagline: l(
+          "Máquina própria com pagamento via PIX integrado",
+          "Own machine with integrated PIX payment",
+        ),
+        description: l(
+          "Máquina de venda automática que projetei e construí do zero — hoje operando 24/7 em frente de casa como produto real, não protótipo. Envolve firmware embarcado para controle físico da máquina, backend de pagamentos com integração PIX (geração de cobrança, confirmação em tempo real e liberação do produto), uma interface de compra para o cliente final e monitoramento próprio de infraestrutura para garantir uptime. Rodando de forma totalmente autônoma, sem intervenção manual, já faturou mais de R$460 só neste mês.",
+          "Vending machine I designed and built from scratch — now running 24/7 outside my house as a real product, not a prototype. It involves embedded firmware for the machine's physical control, a payments backend with PIX integration (charge generation, real-time confirmation, and product release), a purchase interface for the end customer, and my own infrastructure monitoring to keep it up. Running fully autonomously, with no manual intervention, it has already earned over R$460 this month alone.",
+        ),
+        stack: [
+          "ESP32 / Firmware",
+          "Node.js",
+          "Integração PIX",
+          "API de Pagamentos",
+          "Monitoramento",
+          "Docker",
+        ],
+        role: l(
+          "Projeto próprio — firmware, pagamentos, app e infraestrutura",
+          "Own project — firmware, payments, app, and infrastructure",
+        ),
+        status: "active",
+        category: "producao",
+        highlight: true,
+        color: "#1f9d5c",
+        diagram: {
+          layers: [
+            [{ id: "cliente-vm", label: "Cliente" }],
+            [{ id: "interface-vm", label: "Interface de Compra" }],
+            [{ id: "pagamento-vm", label: "Pagamento", sublabel: "PIX" }],
+            [{ id: "confirmacao-vm", label: "Confirmação em tempo real" }],
+            [{ id: "firmware-vm", label: "Firmware", sublabel: "ESP32" }],
+            [{ id: "dispensador-vm", label: "Liberação do Produto" }],
+            [{ id: "monitor-vm", label: "Monitoramento", sublabel: "uptime" }],
+          ],
+          edges: [
+            { from: "cliente-vm", to: "interface-vm" },
+            { from: "interface-vm", to: "pagamento-vm" },
+            { from: "pagamento-vm", to: "confirmacao-vm" },
+            { from: "confirmacao-vm", to: "firmware-vm" },
+            { from: "firmware-vm", to: "dispensador-vm" },
+            { from: "firmware-vm", to: "monitor-vm" },
+          ],
+        },
+      },
+      {
         id: "cartao-de-todos",
         icon: "Building2",
         title: l("Cartão de Todos", "Cartão de Todos"),
@@ -135,7 +237,6 @@ export const content: Content = {
         status: "archived",
         category: "producao",
         highlight: true,
-        clientCode: true,
         color: "#9a7a2a",
       },
       {
@@ -152,7 +253,6 @@ export const content: Content = {
         status: "active",
         category: "producao",
         highlight: true,
-        clientCode: true,
         port: 3333,
         color: "#4a7a4a",
         diagram: {
@@ -189,7 +289,6 @@ export const content: Content = {
         status: "active",
         category: "producao",
         highlight: true,
-        clientCode: true,
         port: 8003,
         color: "#5a3a6a",
       },
@@ -702,6 +801,29 @@ export const content: Content = {
           l(
             "Configuração de roteadores, switches e endereçamento IP. Manutenção de máquinas e suporte a servidores.",
             "Router, switch configuration, and IP addressing. Machine maintenance and server support.",
+          ),
+        ],
+      },
+      {
+        id: "wyd-server",
+        company: "WYD Server",
+        role: l(
+          "Desenvolvedor Full Stack — Node.js (sustentação)",
+          "Full Stack Developer — Node.js (maintenance & ops)",
+        ),
+        period: l("Primeira experiência técnica", "First technical experience"),
+        description: [
+          l(
+            "Backend em Node.js para um servidor de jogo online (MMORPG), incluindo integração de pagamentos para o sistema de itens e moedas do jogo.",
+            "Node.js backend for an online game server (MMORPG), including payment integration for the game's item and currency system.",
+          ),
+          l(
+            "Atuação focada em sustentação: manter o serviço no ar, corrigir bugs em produção e garantir a estabilidade das transações.",
+            "Focused on maintenance and ops: keeping the service online, fixing production bugs, and ensuring transaction stability.",
+          ),
+          l(
+            "Onde aprendi front-end primeiro, depois back-end, APIs e integrações — a base de tudo que faço hoje.",
+            "Where I learned front-end first, then back-end, APIs, and integrations — the foundation of everything I do today.",
           ),
         ],
       },

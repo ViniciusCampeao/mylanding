@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { Github, GraduationCap, FlaskConical } from "lucide-react";
-import { useGSAP } from "@gsap/react"
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useT } from "@/i18n/locale-context";
 import { content } from "@/content/content";
@@ -12,25 +12,28 @@ function ManifestoText({ reduced }: { reduced: boolean }) {
   const t = useT();
   const text = t(content.about.manifesto);
 
-  useGSAP(() => {
-    if (reduced || !containerRef.current) return;
-    const words = containerRef.current.querySelectorAll(".manifesto-word");
-    gsap.fromTo(
-      words,
-      { opacity: 0.08 },
-      {
-        opacity: 1,
-        stagger: 0.04,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 75%",
-          end: "bottom 35%",
-          scrub: 1.0,
+  useGSAP(
+    () => {
+      if (reduced || !containerRef.current) return;
+      const words = containerRef.current.querySelectorAll(".manifesto-word");
+      gsap.fromTo(
+        words,
+        { opacity: 0.08 },
+        {
+          opacity: 1,
+          stagger: 0.04,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 75%",
+            end: "bottom 35%",
+            scrub: 1.0,
+          },
         },
-      }
-    );
-  }, { scope: containerRef, dependencies: [text] });
+      );
+    },
+    { scope: containerRef, dependencies: [text] },
+  );
 
   return (
     <div ref={containerRef} className="max-w-2xl">
@@ -79,7 +82,10 @@ function IdentityCard() {
       ref={cardRef}
       style={{ rotateX: springX, rotateY: springY, transformStyle: "preserve-3d" }}
       onMouseMove={onMove}
-      onMouseLeave={() => { rotateX.set(0); rotateY.set(0); }}
+      onMouseLeave={() => {
+        rotateX.set(0);
+        rotateY.set(0);
+      }}
       className="glass-card relative overflow-hidden p-6"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -115,8 +121,11 @@ function IdentityCard() {
             >
               {content.meta.name}
             </p>
-            <p className="font-mono text-[10px] tracking-widest uppercase" style={{ color: "#4a7a4a" }}>
-              {t(content.meta.tagline).split("•")[0].trim()}
+            <p
+              className="font-mono text-[10px] tracking-widest uppercase"
+              style={{ color: "#4a7a4a" }}
+            >
+              {t(content.meta.role)}
             </p>
           </div>
         </div>
@@ -132,12 +141,24 @@ function IdentityCard() {
               href: `https://github.com/${content.meta.githubUsername}`,
             },
           ].map(({ icon: Icon, text, href }) => (
-            <div key={text} className="flex items-center gap-2 font-mono text-xs" style={{ color: "#6b7d66" }}>
+            <div
+              key={text}
+              className="flex items-center gap-2 font-mono text-xs"
+              style={{ color: "#6b7d66" }}
+            >
               <Icon size={11} style={{ color: "#4a7a4a50" }} />
               {href ? (
-                <a href={href} target="_blank" rel="noopener noreferrer"
-                  className="transition-colors hover:text-[#c8d4c0]">{text}</a>
-              ) : <span>{text}</span>}
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-[#c8d4c0]"
+                >
+                  {text}
+                </a>
+              ) : (
+                <span>{text}</span>
+              )}
             </div>
           ))}
         </div>
@@ -149,7 +170,10 @@ function IdentityCard() {
           className="rounded p-3"
           style={{ background: "rgb(74 122 74 / 0.06)", border: "1px solid rgb(74 122 74 / 0.12)" }}
         >
-          <div className="mb-1.5 flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase" style={{ color: "#4a7a4a" }}>
+          <div
+            className="mb-1.5 flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase"
+            style={{ color: "#4a7a4a" }}
+          >
             <FlaskConical size={11} />
             {t(content.about.researchTitle)}
           </div>
@@ -169,13 +193,21 @@ export function AboutSection() {
   return (
     <section id="about" className="relative py-32">
       {/* Orbs floresta */}
-      <div className="glow-orb absolute -top-40 left-1/4 h-96 w-96" style={{ background: "#4a7a4a" }} />
-      <div className="glow-orb absolute top-1/2 right-0 h-64 w-64" style={{ background: "#2d1a3d" }} />
+      <div
+        className="glow-orb absolute -top-40 left-1/4 h-96 w-96"
+        style={{ background: "#4a7a4a" }}
+      />
+      <div
+        className="glow-orb absolute top-1/2 right-0 h-64 w-64"
+        style={{ background: "#2d1a3d" }}
+      />
 
       <div className="mx-auto max-w-6xl px-6">
         {/* Section index */}
         <div className="mb-4 flex items-center gap-4">
-          <span className="font-mono text-xs tracking-widest" style={{ color: "#4a7a4a40" }}>01</span>
+          <span className="font-mono text-xs tracking-widest" style={{ color: "#4a7a4a40" }}>
+            02
+          </span>
           <div className="hairline flex-1" />
         </div>
 

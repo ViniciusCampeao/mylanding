@@ -3,6 +3,7 @@ import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
 import { GsapProvider } from "@/components/providers/gsap-provider";
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/sections/hero";
+import { WhatIDoSection } from "@/components/sections/what-i-do";
 import { AboutSection } from "@/components/sections/about";
 import { SkillsSection } from "@/components/sections/skills";
 import { PortfolioSection } from "@/components/sections/portfolio";
@@ -23,6 +24,7 @@ function Home() {
         {/* GsapProvider envolve só as seções que usam ScrollTrigger/DrawSVG.
             Os plugins carregam antes delas montarem, eliminando a race condition. */}
         <GsapProvider>
+          <WhatIDoSection />
           <AboutSection />
           <PortfolioSection />
           <InfraSection />

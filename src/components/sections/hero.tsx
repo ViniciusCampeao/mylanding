@@ -68,7 +68,6 @@ export function HeroSection() {
       {/* Conteúdo */}
       <div className="relative z-20 mx-auto w-full max-w-5xl px-6 text-center">
         <div className="flex flex-col items-center">
-
           {/* Nome — Bebas Neue máximo. Cada linha com caixa de altura fixa
               (leading-[0.85] + line-height reservada) pra nunca colidir */}
           <motion.h1
@@ -76,10 +75,7 @@ export function HeroSection() {
             className="font-display tracking-wider uppercase"
             style={{ fontSize: "clamp(3rem, 12vw, 10.5rem)", lineHeight: 0.86 }}
           >
-            <span
-              className="block"
-              style={{ color: "#d3e2e4", textShadow: "0 0 120px #1a6a8a25" }}
-            >
+            <span className="block" style={{ color: "#d3e2e4", textShadow: "0 0 120px #1a6a8a25" }}>
               {content.meta.name.split(" ")[0]}
             </span>
             <span className="block text-gradient">
@@ -87,24 +83,30 @@ export function HeroSection() {
             </span>
           </motion.h1>
 
-          {/* Role — DM Serif italic */}
+          {/* Headline — DM Serif italic, a frase que vende */}
           <motion.p
             {...fadeUp(0.65)}
-            className="mt-6 max-w-md text-base leading-snug sm:mt-5"
+            className="mt-6 max-w-xl text-lg leading-snug sm:mt-5 sm:text-2xl"
             style={{
               fontFamily: "DM Serif Text, Georgia, serif",
               fontStyle: "italic",
-              color: "#7a94a0",
+              color: "#c9dbe0",
             }}
           >
             {t(content.meta.tagline)}
           </motion.p>
 
-          {/* Tags */}
-          <motion.div
-            {...fadeUp(0.8)}
-            className="mt-4 flex flex-wrap justify-center gap-2"
+          {/* Subtítulo — explica o que isso significa na prática */}
+          <motion.p
+            {...fadeUp(0.75)}
+            className="mt-4 max-w-lg text-sm leading-relaxed sm:text-base"
+            style={{ color: "#7a94a0" }}
           >
+            {t(content.meta.subtitle)}
+          </motion.p>
+
+          {/* Tags */}
+          <motion.div {...fadeUp(0.85)} className="mt-5 flex flex-wrap justify-center gap-2">
             {["React", "Node.js", "Docker", "VPS", "UTFPR"].map((tag) => (
               <span
                 key={tag}
@@ -121,9 +123,32 @@ export function HeroSection() {
             ))}
           </motion.div>
 
+          {/* Stats — prova concreta, números reais */}
+          <motion.div
+            {...fadeUp(0.95)}
+            className="mt-9 flex max-w-2xl flex-wrap justify-center gap-x-8 gap-y-5 sm:mt-10"
+          >
+            {content.hero.stats.map((stat) => (
+              <div key={t(stat.label)} className="flex flex-col items-center">
+                <span
+                  className="font-display tracking-wide"
+                  style={{ fontSize: "clamp(1.4rem, 4vw, 2rem)", color: "#eef4e8" }}
+                >
+                  {stat.value}
+                </span>
+                <span
+                  className="mt-1 max-w-[8.5rem] text-center font-mono text-[9px] leading-tight tracking-widest uppercase"
+                  style={{ color: "#4a7a4a" }}
+                >
+                  {t(stat.label)}
+                </span>
+              </div>
+            ))}
+          </motion.div>
+
           {/* Scroll hint — some conforme rola */}
           <motion.div
-            {...fadeUp(1.1)}
+            {...fadeUp(1.2)}
             className="mt-8 sm:mt-12"
             style={{ opacity: reduced ? 1 : hintOpacity, y: reduced ? 0 : hintY }}
           >

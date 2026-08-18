@@ -28,7 +28,7 @@ export function PortfolioSection() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-4 flex items-center gap-4">
           <span className="font-mono text-xs tracking-widest" style={{ color: "#3a9ab070" }}>
-            02
+            03
           </span>
           <div className="hairline flex-1" />
         </div>

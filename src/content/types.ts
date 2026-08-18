@@ -44,8 +44,6 @@ export interface Project {
   /** Nome do ícone lucide-react (ex.: "Server", "Sprout") usado como visual do card. */
   icon: string;
   highlight?: boolean;
-  /** true só para trabalho pago de cliente com código realmente confidencial. */
-  clientCode?: boolean;
   /** true para pesquisa com divulgação restrita (ex.: IC patenteada). */
   restricted?: boolean;
   port?: number;
@@ -83,10 +81,24 @@ export interface InfraNode {
   children?: string[];
 }
 
+export interface StatItem {
+  value: string;
+  label: L;
+}
+
+export interface WhatIDoGroup {
+  id: string;
+  icon: string;
+  label: L;
+  items: string[];
+}
+
 export interface Content {
   meta: {
     name: string;
     tagline: L;
+    subtitle: L;
+    role: L;
     bio: L;
     githubUsername: string;
     linkedinUrl: string;
@@ -100,9 +112,16 @@ export interface Content {
     portfolio: L;
     infra: L;
     contact: L;
+    whatIDo: L;
   };
   hero: {
     scrollHint: L;
+    stats: StatItem[];
+  };
+  whatIDo: {
+    sectionTitle: L;
+    sectionSubtitle: L;
+    groups: WhatIDoGroup[];
   };
   about: {
     manifesto: L;
