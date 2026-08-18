@@ -12,7 +12,6 @@ const C = {
   caddy: "#5a9a5a",
   farma: "#5a9a5a",
   mind: "#7a52a0",
-  ytmp3: "#4a8a6a",
   monitor: "#9a8236",
   pg: "#3a6a8a",
   redis: "#a04a4a",
@@ -31,7 +30,6 @@ type NodeKey =
   | "security"
   | "farma"
   | "mind"
-  | "ytmp3"
   | "monitor"
   | "pg"
   | "redis"
@@ -69,22 +67,19 @@ const nodes: Record<NodeKey, NodeDef> = {
     sublabel: "push · main",
     color: C.deploy,
     size: 22,
-    planned: true,
   },
   caddy: { x: 300, y: 316, label: "Caddy", sublabel: ":443", color: C.caddy, size: 30 },
   deploy: {
     x: 680,
     y: 316,
     label: "Auto Deploy",
-    sublabel: "em breve",
+    sublabel: "GitHub Actions",
     color: C.deploy,
     size: 22,
-    planned: true,
   },
   farma: { x: 120, y: 424, label: "recompra-farma", sublabel: ":3333", color: C.farma, size: 24 },
   mind: { x: 250, y: 424, label: "mindrabar", sublabel: ":8003", color: C.mind, size: 24 },
-  ytmp3: { x: 510, y: 424, label: "ytmp3", sublabel: ":3005", color: C.ytmp3, size: 24 },
-  monitor: { x: 640, y: 424, label: "grafana", sublabel: ":3001", color: C.monitor, size: 24 },
+  monitor: { x: 380, y: 424, label: "grafana", sublabel: ":3001", color: C.monitor, size: 24 },
   pg: { x: 120, y: 536, label: "postgres", sublabel: ":5432", color: C.pg, size: 22 },
   redis: { x: 250, y: 536, label: "redis", sublabel: ":6379", color: C.redis, size: 22 },
   aws: { x: 380, y: 536, label: "AWS", sublabel: "S3 Backup", color: C.aws, size: 22 },
@@ -108,13 +103,12 @@ const edges: EdgeDef[] = [
   { from: "security", to: "caddy", color: C.security, id: "e-sec2", guard: true },
   { from: "caddy", to: "farma", color: C.farma, id: "e-farma" },
   { from: "caddy", to: "mind", color: C.mind, id: "e-mind" },
-  { from: "caddy", to: "ytmp3", color: C.ytmp3, id: "e-ytmp3" },
   { from: "caddy", to: "monitor", color: C.monitor, id: "e-monitor" },
   { from: "farma", to: "pg", color: C.pg, id: "e-pg" },
   { from: "farma", to: "redis", color: C.redis, id: "e-redis" },
   { from: "pg", to: "aws", color: C.aws, id: "e-aws", guard: true },
-  { from: "github", to: "deploy", color: C.deploy, id: "e-gh", planned: true },
-  { from: "deploy", to: "caddy", color: C.deploy, id: "e-deploy", planned: true },
+  { from: "github", to: "deploy", color: C.deploy, id: "e-gh" },
+  { from: "deploy", to: "caddy", color: C.deploy, id: "e-deploy" },
 ];
 
 // Dado um nó selecionado, calcula quais nós e arestas fazem parte do
@@ -241,7 +235,7 @@ export function InfraDiagram() {
 
   return (
     <div
-      className="relative overflow-hidden p-2 sm:p-4"
+      className="relative overflow-x-auto p-2 sm:p-4"
       style={{
         borderRadius: "6px",
         border: "1px solid rgb(74 122 74 / 0.16)",
@@ -252,7 +246,7 @@ export function InfraDiagram() {
       <svg
         ref={svgRef}
         viewBox={`0 0 ${W} ${H}`}
-        style={{ width: "100%", maxHeight: 620, display: "block" }}
+        style={{ width: "100%", minWidth: W, maxHeight: 620, display: "block" }}
         onMouseLeave={() => setSelected(null)}
       >
         <defs>

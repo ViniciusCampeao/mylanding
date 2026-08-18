@@ -103,6 +103,7 @@ export interface Content {
     githubUsername: string;
     linkedinUrl: string;
     whatsapp: string;
+    whatsappDisplay: string;
     email: string;
     university: L;
   };
@@ -155,6 +156,8 @@ export interface Content {
   contact: {
     sectionTitle: L;
     cta: L;
+    ctaSubtitle: L;
+    whatsappCta: L;
     whatsappMsg: L;
     copyEmail: L;
     copied: L;

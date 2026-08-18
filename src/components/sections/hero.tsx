@@ -42,7 +42,7 @@ export function HeroSection() {
   return (
     <section
       ref={wrapperRef}
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden py-28 sm:py-24"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden py-24 sm:py-28"
     >
       <ClientOnly fallback={<HeroFallback />}>
         <Suspense fallback={<HeroFallback />}>

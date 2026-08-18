@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Shield, Server, Globe, DatabaseBackup, Wifi } from "lucide-react";
+import { Shield, Server, Globe, DatabaseBackup, Wifi, Rocket } from "lucide-react";
 import { useT } from "@/i18n/locale-context";
 import { content } from "@/content/content";
 import { InfraDiagram } from "./infra-diagram";
@@ -21,8 +21,13 @@ const highlights = [
     desc: { pt: "Serviços isolados por rede", en: "Services isolated by network" },
   },
   {
+    icon: Rocket,
+    label: { pt: "Auto-Deploy (CI/CD)", en: "Auto-Deploy (CI/CD)" },
+    desc: { pt: "GitHub Actions + runner próprio", en: "GitHub Actions + self-hosted runner" },
+  },
+  {
     icon: DatabaseBackup,
-    label: { pt: "Backup na AWS", en: "AWS Backup" },
+    label: { pt: "Backup no Amazon S3", en: "Amazon S3 Backup" },
     desc: { pt: "Cópia externa do banco de dados", en: "Off-site database copy" },
   },
   {

@@ -22,6 +22,7 @@ export const content: Content = {
     githubUsername: "ViniciusCampeao",
     linkedinUrl: "www.linkedin.com/in/vinicius-campeão-b35807260" /* EDIT: seu LinkedIn real */,
     whatsapp: "5514998077628",
+    whatsappDisplay: "+55 14 99807-7628",
     email: "viniciusfernandes643@gmail.com",
     university: l(
       "UTFPR - Universidade Tecnológica Federal do Paraná",
@@ -83,8 +84,8 @@ export const content: Content = {
 
   about: {
     manifesto: l(
-      "Sou desenvolvedor full-stack com foco em sistemas completos, do código à infraestrutura. Trabalho com TypeScript, React, Next.js e Node.js para criar soluções customizadas, automações e integrações de pagamento robustas — comecei integrando pagamentos ainda no início da carreira e hoje isso é uma das minhas frentes mais fortes, com integração PIX de ponta a ponta. Mas não fico preso ao navegador: sou sysadmin da minha própria infraestrutura (Linux, Docker, VPS), projeto e produzo hardware de pagamento — como minha vending machine autônoma, com firmware, cobrança PIX e liberação de produto em tempo real, rodando 24/7 sem intervenção manual — e mantenho um home lab para explorar redes, eletrônica e IoT. Esse conhecimento transversal me permite pensar em problemas além da interface e entregar sistemas completos, do circuito ao servidor.",
-      "I'm a full-stack developer focused on complete systems, from code to infrastructure. I work with TypeScript, React, Next.js, and Node.js to build custom solutions, automations, and robust payment integrations — I started integrating payments early in my career, and today it's one of my strongest areas, with end-to-end PIX integration. But I don't stay confined to the browser: I'm a sysadmin of my own infrastructure (Linux, Docker, VPS), I design and build payment hardware — like my autonomous vending machine, with firmware, PIX billing, and real-time product release, running 24/7 with no manual intervention — and I maintain a home lab to explore networks, electronics, and IoT. This cross-cutting knowledge lets me think about problems beyond the interface and deliver complete systems, from circuit to server.",
+      "Sou desenvolvedor full-stack com foco em sistemas completos, do código à infraestrutura. Trabalho com TypeScript, React, Next.js e Node.js para criar soluções customizadas, automações e integrações robustas — incluindo integrações de pagamento, como PIX. Mas não fico preso ao navegador: sou sysadmin da minha própria infraestrutura (Linux, Docker, VPS), projeto e produzo hardware — como minha vending machine autônoma, com firmware, cobrança via PIX e liberação de produto em tempo real, rodando 24/7 sem intervenção manual — e mantenho um home lab para explorar redes, eletrônica e IoT. Esse conhecimento transversal me permite pensar em problemas além da interface e entregar sistemas completos, do circuito ao servidor.",
+      "I'm a full-stack developer focused on complete systems, from code to infrastructure. I work with TypeScript, React, Next.js, and Node.js to build custom solutions, automations, and robust integrations — including payment integrations, like PIX. But I don't stay confined to the browser: I'm a sysadmin of my own infrastructure (Linux, Docker, VPS), I design and build hardware — like my autonomous vending machine, with firmware, PIX billing, and real-time product release, running 24/7 with no manual intervention — and I maintain a home lab to explore networks, electronics, and IoT. This cross-cutting knowledge lets me think about problems beyond the interface and deliver complete systems, from circuit to server.",
     ),
     researchTitle: l("Iniciação Científica", "Undergraduate Research"),
     researchDescription: l(
@@ -165,54 +166,6 @@ export const content: Content = {
     projects: [
       /* ── 01 · Produção ──────────────────────────────────── */
       {
-        id: "vending-machine",
-        icon: "Banknote",
-        title: l("Vending Machine Autônoma", "Autonomous Vending Machine"),
-        tagline: l(
-          "Máquina própria com pagamento via PIX integrado",
-          "Own machine with integrated PIX payment",
-        ),
-        description: l(
-          "Máquina de venda automática que projetei e construí do zero — hoje operando 24/7 em frente de casa como produto real, não protótipo. Envolve firmware embarcado para controle físico da máquina, backend de pagamentos com integração PIX (geração de cobrança, confirmação em tempo real e liberação do produto), uma interface de compra para o cliente final e monitoramento próprio de infraestrutura para garantir uptime. Roda de forma totalmente autônoma, sem intervenção manual, processando pagamentos reais e gerando receita recorrente todos os dias.",
-          "Vending machine I designed and built from scratch — now running 24/7 outside my house as a real product, not a prototype. It involves embedded firmware for the machine's physical control, a payments backend with PIX integration (charge generation, real-time confirmation, and product release), a purchase interface for the end customer, and my own infrastructure monitoring to keep it up. It runs fully autonomously, with no manual intervention, processing real payments and generating recurring revenue every day.",
-        ),
-        stack: [
-          "ESP32 / Firmware",
-          "Node.js",
-          "Integração PIX",
-          "API de Pagamentos",
-          "Monitoramento",
-          "Docker",
-        ],
-        role: l(
-          "Projeto próprio — firmware, pagamentos, app e infraestrutura",
-          "Own project — firmware, payments, app, and infrastructure",
-        ),
-        status: "active",
-        category: "producao",
-        highlight: true,
-        color: "#1f9d5c",
-        diagram: {
-          layers: [
-            [{ id: "cliente-vm", label: "Cliente" }],
-            [{ id: "interface-vm", label: "Interface de Compra" }],
-            [{ id: "pagamento-vm", label: "Pagamento", sublabel: "PIX" }],
-            [{ id: "confirmacao-vm", label: "Confirmação em tempo real" }],
-            [{ id: "firmware-vm", label: "Firmware", sublabel: "ESP32" }],
-            [{ id: "dispensador-vm", label: "Liberação do Produto" }],
-            [{ id: "monitor-vm", label: "Monitoramento", sublabel: "uptime" }],
-          ],
-          edges: [
-            { from: "cliente-vm", to: "interface-vm" },
-            { from: "interface-vm", to: "pagamento-vm" },
-            { from: "pagamento-vm", to: "confirmacao-vm" },
-            { from: "confirmacao-vm", to: "firmware-vm" },
-            { from: "firmware-vm", to: "dispensador-vm" },
-            { from: "firmware-vm", to: "monitor-vm" },
-          ],
-        },
-      },
-      {
         id: "cartao-de-todos",
         icon: "Building2",
         title: l("Cartão de Todos", "Cartão de Todos"),
@@ -221,10 +174,18 @@ export const content: Content = {
           "Internal platform & operational automation",
         ),
         description: l(
-          "Desenvolvimento e manutenção de sistemas internos utilizados por diferentes departamentos, incluindo áreas específicas por setor, vendas, notificações, comunicação por e-mail e integrações operacionais. Paralelamente, desenvolvi uma série de automações e bots para WhatsApp, Excel e processos administrativos, reduzindo tarefas manuais e transformando rotinas recorrentes em fluxos automatizados.",
-          "Development and maintenance of internal systems used by different departments, including sector-specific areas, sales features, notifications, email communication, and operational integrations. In parallel, I built a range of automations and bots for WhatsApp, Excel, and administrative processes, cutting down manual work and turning recurring routines into automated flows.",
+          "Desenvolvimento e manutenção de sistemas internos utilizados por diferentes departamentos, incluindo áreas específicas por setor, vendas, notificações, comunicação por e-mail e integrações operacionais. Implementei também um método de assinatura digital para contratos, dando validade jurídica a documentos fechados direto pelo sistema. Paralelamente, desenvolvi uma série de automações e bots para WhatsApp, Excel e processos administrativos, reduzindo tarefas manuais e transformando rotinas recorrentes em fluxos automatizados.",
+          "Development and maintenance of internal systems used by different departments, including sector-specific areas, sales features, notifications, email communication, and operational integrations. I also implemented a digital signature method for contracts, giving legal validity to documents closed directly through the system. In parallel, I built a range of automations and bots for WhatsApp, Excel, and administrative processes, cutting down manual work and turning recurring routines into automated flows.",
         ),
-        stack: ["Python", "Full Stack", "E-mail", "WhatsApp Bot", "Excel/Planilhas", "Automação"],
+        stack: [
+          "Python",
+          "Full Stack",
+          "Assinatura Digital",
+          "E-mail",
+          "WhatsApp Bot",
+          "Excel/Planilhas",
+          "Automação",
+        ],
         role: l(
           "Desenvolvimento full stack, automações e suporte de TI",
           "Full stack development, automation, and IT support",
@@ -276,10 +237,17 @@ export const content: Content = {
         title: l("Mindrabar", "Mindrabar"),
         tagline: l("Comanda digital para cliente real", "Digital ordering system for real client"),
         description: l(
-          "Sistema completo de comanda digital e pedidos para restaurante. Frontend React + API Node containerizados, deploy em VPS via Cloudflare Tunnel — zero downtime.",
-          "Complete digital tab and ordering system for a restaurant. Containerized React frontend + Node API, deployed on VPS via Cloudflare Tunnel — zero downtime.",
+          "Sistema completo de comanda digital e pedidos para restaurante. Inclui automação de pagamento via PIX direto na comanda, permitindo que o próprio cliente feche e pague a conta sem depender do garçom. Frontend React + API Node containerizados, deploy em VPS via Cloudflare Tunnel — zero downtime.",
+          "Complete digital tab and ordering system for a restaurant. Includes PIX payment automation built into the tab, letting the customer close and pay the bill themselves without depending on waitstaff. Containerized React frontend + Node API, deployed on VPS via Cloudflare Tunnel — zero downtime.",
         ),
-        stack: ["React", "Node.js", "Docker Compose", "Cloudflare Tunnel", "PostgreSQL"],
+        stack: [
+          "React",
+          "Node.js",
+          "Integração PIX",
+          "Docker Compose",
+          "Cloudflare Tunnel",
+          "PostgreSQL",
+        ],
         role: l("Full stack + infra + deploy", "Full stack + infra + deployment"),
         status: "active",
         category: "producao",
@@ -516,24 +484,57 @@ export const content: Content = {
         port: 3001,
         color: "#6a5a2a",
       },
-      {
-        id: "ytmp3",
-        icon: "Music",
-        title: l("ytmp3", "ytmp3"),
-        tagline: l("Conversor YouTube → MP3 self-hosted", "Self-hosted YouTube → MP3 converter"),
-        description: l(
-          "Serviço self-hosted de conversão de YouTube para MP3. Containerizado com autoheal para auto-recovery.",
-          "Self-hosted YouTube to MP3 conversion service. Containerized with autoheal for auto-recovery.",
-        ),
-        stack: ["Node.js", "Docker", "autoheal"],
-        role: l("Deploy e manutenção", "Deployment and maintenance"),
-        status: "active",
-        category: "infraestrutura",
-        port: 3005,
-        color: "#3a5a4a",
-      },
 
       /* ── 04 · Embedded & IoT ─────────────────────────────── */
+      {
+        id: "vending-machine",
+        icon: "Banknote",
+        title: l("Vending Machine Autônoma", "Autonomous Vending Machine"),
+        tagline: l(
+          "Máquina própria com pagamento via PIX integrado",
+          "Own machine with integrated PIX payment",
+        ),
+        description: l(
+          "Máquina de venda automática que projetei e construí do zero — hoje operando 24/7 em frente de casa como produto real, não protótipo. Envolve firmware embarcado para controle físico da máquina, backend de pagamentos com integração PIX (geração de cobrança, confirmação em tempo real e liberação do produto), uma interface de compra para o cliente final e monitoramento próprio de infraestrutura para garantir uptime. Roda de forma totalmente autônoma, sem intervenção manual, processando pagamentos reais e gerando receita recorrente todos os dias.",
+          "Vending machine I designed and built from scratch — now running 24/7 outside my house as a real product, not a prototype. It involves embedded firmware for the machine's physical control, a payments backend with PIX integration (charge generation, real-time confirmation, and product release), a purchase interface for the end customer, and my own infrastructure monitoring to keep it up. It runs fully autonomously, with no manual intervention, processing real payments and generating recurring revenue every day.",
+        ),
+        stack: [
+          "ESP32 / Firmware",
+          "Node.js",
+          "Integração PIX",
+          "Integrações de Pagamento",
+          "API de Pagamentos",
+          "Monitoramento",
+          "Docker",
+        ],
+        role: l(
+          "Projeto próprio — firmware, pagamentos, app e infraestrutura",
+          "Own project — firmware, payments, app, and infrastructure",
+        ),
+        status: "active",
+        category: "embedded-iot",
+        highlight: true,
+        color: "#1f9d5c",
+        diagram: {
+          layers: [
+            [{ id: "cliente-vm", label: "Cliente" }],
+            [{ id: "interface-vm", label: "Interface de Compra" }],
+            [{ id: "pagamento-vm", label: "Pagamento", sublabel: "PIX" }],
+            [{ id: "confirmacao-vm", label: "Confirmação em tempo real" }],
+            [{ id: "firmware-vm", label: "Firmware", sublabel: "ESP32" }],
+            [{ id: "dispensador-vm", label: "Liberação do Produto" }],
+            [{ id: "monitor-vm", label: "Monitoramento", sublabel: "uptime" }],
+          ],
+          edges: [
+            { from: "cliente-vm", to: "interface-vm" },
+            { from: "interface-vm", to: "pagamento-vm" },
+            { from: "pagamento-vm", to: "confirmacao-vm" },
+            { from: "confirmacao-vm", to: "firmware-vm" },
+            { from: "firmware-vm", to: "dispensador-vm" },
+            { from: "firmware-vm", to: "monitor-vm" },
+          ],
+        },
+      },
       {
         id: "ai-home-assistant",
         icon: "BrainCircuit",
@@ -575,11 +576,14 @@ export const content: Content = {
         title: l("Smart Farming", "Smart Farming"),
         tagline: l("Sensoriamento e automação de cultivo", "Crop sensing and automation"),
         description: l(
-          "Sistema de monitoramento e automação de cultivo com sensores de pH, umidade e luminosidade conectados via ESP32 a um servidor central. Além do dashboard remoto, o sistema automatiza irrigação, controle de pH e adição de nutrientes. Desenvolvido em dupla, como coparticipação no TCC de uma colega graduanda em Agronomia — eu cuidando do hardware, firmware e servidor.",
-          "Crop monitoring and automation system with pH, humidity, and light sensors connected via ESP32 to a central server. Besides the remote dashboard, the system automates irrigation, pH control, and nutrient dosing. Built in a pair, as a co-participation in the undergraduate thesis of a fellow Agronomy student — I handled the hardware, firmware, and server side.",
+          "Sistema de monitoramento e automação de cultivo com sensores de pH, umidade e luminosidade conectados via ESP32 a um servidor central. Além do dashboard remoto, o sistema automatiza irrigação, controle de pH e adição de nutrientes. Desenvolvido em dupla, como participante da eletrônica e do código no TCC de uma colega graduanda em Agronomia — eu cuidando do hardware, firmware e servidor.",
+          "Crop monitoring and automation system with pH, humidity, and light sensors connected via ESP32 to a central server. Besides the remote dashboard, the system automates irrigation, pH control, and nutrient dosing. Built in a pair, contributing the electronics and code for a fellow Agronomy student's undergraduate thesis — I handled the hardware, firmware, and server side.",
         ),
         stack: ["ESP32", "Sensores (pH/Umidade/Luz)", "Automação", "Dashboard"],
-        role: l("Sensoriamento, automação e dashboard", "Sensing, automation, and dashboard"),
+        role: l(
+          "Participante da eletrônica e do código — TCC de Agronomia",
+          "Contributed electronics and code — Agronomy thesis",
+        ),
         status: "production",
         category: "embedded-iot",
         highlight: true,
@@ -655,24 +659,6 @@ export const content: Content = {
         category: "embedded-iot",
         color: "#3a8a8a",
       },
-      {
-        id: "nrfbox",
-        icon: "Antenna",
-        title: l("nRFBox — Pentest Lab", "nRFBox — Pentest Lab"),
-        tagline: l(
-          "Ferramenta de pentest laboratorial em ESP32",
-          "ESP32-based lab pentesting tool",
-        ),
-        description: l(
-          "Fork pessoal do nRFBox (projeto open-source original de cifertech, github.com/cifertech/nRFBox), com boa parte do código modificada por mim para meu uso. É uma ferramenta de pentest laboratorial baseada em ESP32 e nRF24, usada só em ambiente controlado — parte do meu interesse crescente em segurança ofensiva / hacking ético.",
-          "Personal fork of nRFBox (original open-source project by cifertech, github.com/cifertech/nRFBox), with a large part of the code modified for my own use. It's a lab-only pentesting tool built on ESP32 and nRF24, used strictly in a controlled environment — part of my growing interest in offensive security / ethical hacking.",
-        ),
-        stack: ["ESP32", "nRF24", "OLED", "Firmware embarcado"],
-        role: l("Modificação de firmware e hardware", "Firmware and hardware modification"),
-        status: "production",
-        category: "embedded-iot",
-        color: "#8a3a6a",
-      },
 
       /* ── 05 · Robótica ───────────────────────────────────── */
       {
@@ -732,8 +718,8 @@ export const content: Content = {
       "My VPS, my responsibility — from DNS to the database.",
     ),
     description: l(
-      "Todos os projetos rodam em uma VPS própria (192.168.0.110), isolada por redes Docker, acessível via Cloudflare Tunnel. UFW + Fail2Ban + Tailscale garantem que só o necessário fica exposto. Backup externo do banco de dados na AWS e um segundo link de internet em failover garantem que a infraestrutura sobrevive a uma queda isolada.",
-      "All projects run on my own VPS (192.168.0.110), isolated by Docker networks, accessible via Cloudflare Tunnel. UFW + Fail2Ban + Tailscale ensure only what's needed is exposed. An off-site database backup on AWS and a second failover internet link keep the infrastructure alive through an isolated outage.",
+      "Todos os projetos rodam em uma VPS própria (192.168.0.110), isolada por redes Docker, acessível via Cloudflare Tunnel. UFW + Fail2Ban + Tailscale garantem que só o necessário fica exposto. Deploy automático via GitHub Actions com runner próprio publica em produção a cada push pra main, backup externo do banco de dados no Amazon S3 e um segundo link de internet em failover garantem que a infraestrutura sobrevive a uma queda isolada e nunca fica desatualizada.",
+      "All projects run on my own VPS (192.168.0.110), isolated by Docker networks, accessible via Cloudflare Tunnel. UFW + Fail2Ban + Tailscale ensure only what's needed is exposed. Automatic deploys via GitHub Actions with a self-hosted runner ship to production on every push to main, an off-site database backup on Amazon S3, and a second failover internet link keep the infrastructure alive through an isolated outage and never out of date.",
     ),
   },
 
@@ -750,8 +736,8 @@ export const content: Content = {
         period: l("Primeira experiência técnica", "First technical experience"),
         description: [
           l(
-            "Backend em Node.js para um servidor de jogo online (MMORPG), incluindo integração de pagamentos para o sistema de itens e moedas do jogo.",
-            "Node.js backend for an online game server (MMORPG), including payment integration for the game's item and currency system.",
+            "Backend em Node.js com integração de pagamentos reais (PIX / gateway) para a loja de itens de um servidor de jogo online — da geração da cobrança até a liberação do item após a confirmação.",
+            "Node.js backend with real payment integration (PIX / gateway) for an online game server's item shop — from charge generation through item release after confirmation.",
           ),
           l(
             "Atuação focada em sustentação: manter o serviço no ar, corrigir bugs em produção e garantir a estabilidade das transações.",
@@ -773,8 +759,8 @@ export const content: Content = {
         period: l("2023 – atual", "2023 – present"),
         description: [
           l(
-            "Desenvolvimento de aplicações web e APIs para clientes reais, com deploy em VPS própria.",
-            "Web application and API development for real clients, deployed on my own VPS.",
+            "Desenvolvimento de aplicações web e APIs para clientes reais, com deploy em VPS própria — incluindo sistemas com pagamento integrado (PIX), de comandas de restaurante a hardware próprio de cobrança.",
+            "Web application and API development for real clients, deployed on my own VPS — including systems with integrated payments (PIX), from restaurant tabs to my own billing hardware.",
           ),
           l(
             "Infraestrutura containerizada: Docker Compose, Cloudflare Tunnel, Tailscale, systemd.",
@@ -801,8 +787,8 @@ export const content: Content = {
         period: l("1 ano", "1 year"),
         description: [
           l(
-            "Responsável pela área de TI: suporte, infraestrutura e desenvolvimento full stack de sistemas internos.",
-            "Responsible for the IT area: support, infrastructure, and full stack development of internal systems.",
+            "Responsável pela área de TI: suporte, infraestrutura e desenvolvimento full stack de sistemas internos, incluindo um método de assinatura digital para dar validade jurídica a contratos fechados pelo sistema.",
+            "Responsible for the IT area: support, infrastructure, and full stack development of internal systems, including a digital signature method to give legal validity to contracts closed through the system.",
           ),
           l(
             "Criação de diversas automações em Python para processos operacionais.",
@@ -813,12 +799,12 @@ export const content: Content = {
       {
         id: "sicredi",
         company: "Sicredi",
-        role: l("TI", "IT"),
+        role: l("TI — Cooperativa Financeira", "IT — Financial Cooperative"),
         period: l("", ""),
         description: [
           l(
-            "Configuração de roteadores, switches e endereçamento IP. Manutenção de máquinas e suporte a servidores.",
-            "Router, switch configuration, and IP addressing. Machine maintenance and server support.",
+            "Suporte de TI dentro de uma cooperativa de crédito: configuração de roteadores, switches e endereçamento IP, manutenção de máquinas e suporte a servidores em ambiente regulado do setor financeiro.",
+            "IT support inside a credit union: router and switch configuration, IP addressing, machine maintenance, and server support in a regulated financial-sector environment.",
           ),
         ],
       },
@@ -828,6 +814,8 @@ export const content: Content = {
   contact: {
     sectionTitle: l("Contato", "Contact"),
     cta: l("Vamos conversar", "Let's talk"),
+    ctaSubtitle: l("Me manda um e-mail", "Send me an email"),
+    whatsappCta: l("Prefere WhatsApp?", "Prefer WhatsApp?"),
     whatsappMsg: l(
       "Olá Vinícius! Vi seu portfólio e gostaria de conversar.",
       "Hi Vinícius! I saw your portfolio and would like to talk.",

@@ -48,7 +48,7 @@ export function ProjectDiagram({ diagram, color }: { diagram: ProjectDiagramData
 
   return (
     <div
-      className="relative overflow-hidden p-2 sm:p-4"
+      className="relative overflow-x-auto p-2 sm:p-4"
       style={{
         borderRadius: "6px",
         border: `1px solid ${color}25`,
@@ -57,7 +57,7 @@ export function ProjectDiagram({ diagram, color }: { diagram: ProjectDiagramData
     >
       <svg
         viewBox={`0 0 ${W} ${height}`}
-        style={{ width: "100%", maxHeight: 460, display: "block" }}
+        style={{ width: "100%", minWidth: W, maxHeight: 460, display: "block" }}
       >
         {/* Arestas */}
         {diagram.edges.map((e, i) => {
