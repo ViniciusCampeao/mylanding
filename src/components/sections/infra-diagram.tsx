@@ -13,6 +13,8 @@ const C = {
   farma: "#5a9a5a",
   mind: "#7a52a0",
   monitor: "#9a8236",
+  casamento: "#b34a6a",
+  ytmp3: "#b85c2a",
   pg: "#3a6a8a",
   redis: "#a04a4a",
   security: "#4a9a4a",
@@ -31,6 +33,8 @@ type NodeKey =
   | "farma"
   | "mind"
   | "monitor"
+  | "casamento"
+  | "ytmp3"
   | "pg"
   | "redis"
   | "aws"
@@ -80,6 +84,15 @@ const nodes: Record<NodeKey, NodeDef> = {
   farma: { x: 120, y: 424, label: "recompra-farma", sublabel: ":3333", color: C.farma, size: 24 },
   mind: { x: 250, y: 424, label: "mindrabar", sublabel: ":8003", color: C.mind, size: 24 },
   monitor: { x: 380, y: 424, label: "grafana", sublabel: ":3001", color: C.monitor, size: 24 },
+  casamento: {
+    x: 510,
+    y: 424,
+    label: "casamento-bv",
+    sublabel: ":8200",
+    color: C.casamento,
+    size: 24,
+  },
+  ytmp3: { x: 640, y: 424, label: "ytmp3", sublabel: ":3005", color: C.ytmp3, size: 24 },
   pg: { x: 120, y: 536, label: "postgres", sublabel: ":5432", color: C.pg, size: 22 },
   redis: { x: 250, y: 536, label: "redis", sublabel: ":6379", color: C.redis, size: 22 },
   aws: { x: 380, y: 536, label: "AWS", sublabel: "S3 Backup", color: C.aws, size: 22 },
@@ -104,6 +117,8 @@ const edges: EdgeDef[] = [
   { from: "caddy", to: "farma", color: C.farma, id: "e-farma" },
   { from: "caddy", to: "mind", color: C.mind, id: "e-mind" },
   { from: "caddy", to: "monitor", color: C.monitor, id: "e-monitor" },
+  { from: "caddy", to: "casamento", color: C.casamento, id: "e-casamento" },
+  { from: "caddy", to: "ytmp3", color: C.ytmp3, id: "e-ytmp3" },
   { from: "farma", to: "pg", color: C.pg, id: "e-pg" },
   { from: "farma", to: "redis", color: C.redis, id: "e-redis" },
   { from: "pg", to: "aws", color: C.aws, id: "e-aws", guard: true },
