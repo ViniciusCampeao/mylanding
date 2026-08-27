@@ -318,6 +318,66 @@ export const content: Content = {
         },
       },
 
+      {
+        id: "casamento-bv",
+        icon: "Heart",
+        title: l("Casamento BV", "Casamento BV"),
+        tagline: l(
+          "Mural de fotos em tempo real via QR code",
+          "Real-time photo wall via QR code",
+        ),
+        description: l(
+          "Site que os convidados do meu casamento acessam via QR code para mandar as fotos que tiraram da festa, exibidas em tempo real num mural público. Tem um painel administrativo oculto para download em lote e exclusão de fotos. Containerizado, deploy em VPS via Cloudflare Tunnel.",
+          "Site my wedding guests access via QR code to upload photos they took at the party, shown in real time on a public wall. Includes a hidden admin panel for bulk download and deletion. Containerized, deployed on VPS via Cloudflare Tunnel.",
+        ),
+        stack: ["Node.js", "Express", "SQLite", "Docker", "Cloudflare Tunnel"],
+        role: l("Full stack + infra + deploy", "Full stack + infra + deployment"),
+        status: "active",
+        category: "producao",
+        highlight: true,
+        port: 8200,
+        color: "#b34a6a",
+      },
+      {
+        id: "ytmp3",
+        icon: "Music",
+        title: l("ytmp3", "ytmp3"),
+        tagline: l(
+          "Conversor YouTube → MP3 com streaming direto",
+          "YouTube-to-MP3 converter with direct streaming",
+        ),
+        description: l(
+          "Serviço público que converte vídeos do YouTube em MP3 sob demanda, com streaming direto da conversão — sem salvar arquivos em disco. yt-dlp e FFmpeg encadeados via streams no Node.js, com rate limiting por IP. Containerizado, exposto via Cloudflare Tunnel.",
+          "Public service that converts YouTube videos to MP3 on demand, streaming the conversion directly — no files saved to disk. yt-dlp and FFmpeg chained through Node.js streams, with per-IP rate limiting. Containerized, exposed via Cloudflare Tunnel.",
+        ),
+        stack: ["Node.js", "Express", "yt-dlp", "FFmpeg", "Docker", "Cloudflare Tunnel"],
+        role: l("Full stack + infra + deploy", "Full stack + infra + deployment"),
+        status: "active",
+        category: "producao",
+        highlight: true,
+        port: 3005,
+        color: "#b85c2a",
+      },
+      {
+        id: "dashboards-financeiros-cliente",
+        icon: "BarChart3",
+        title: l("Dashboards Financeiros — Cliente", "Financial Dashboards — Client"),
+        tagline: l(
+          "Consolidação de planilhas em painéis internos",
+          "Spreadsheet consolidation into internal panels",
+        ),
+        description: l(
+          "Conjunto de painéis internos para um cliente da indústria, consolidando fechamento diário e outros indicadores financeiros a partir de planilhas — com login, importação de arquivos, processamento no navegador e histórico persistente do que já foi importado. Trabalho confidencial: detalhes de cliente e dados ficam fora deste portfólio.",
+          "A set of internal dashboards for an industry client, consolidating daily closing and other financial indicators from spreadsheets — with login, file import, in-browser processing, and a persistent history of what's been imported. Confidential client work: client details and data are kept out of this portfolio.",
+        ),
+        stack: ["Node.js", "Express", "SQLite", "Docker", "GitHub Actions (self-hosted runner)"],
+        role: l("Full stack + infra + deploy", "Full stack + infra + deployment"),
+        status: "active",
+        category: "producao",
+        restricted: true,
+        color: "#5a6a7a",
+      },
+
       /* ── 02 · Pesquisa ──────────────────────────────────── */
       {
         id: "colonias-bacterianas",
@@ -493,6 +553,27 @@ export const content: Content = {
         category: "infraestrutura",
         port: 3001,
         color: "#6a5a2a",
+      },
+
+      {
+        id: "painel-cameras",
+        icon: "Camera",
+        title: l("Painel de Câmeras", "Camera Panel"),
+        tagline: l(
+          "Painel próprio para câmeras IP ONVIF da rede local",
+          "Custom panel for local-network ONVIF IP cameras",
+        ),
+        description: l(
+          "Painel web que criei pra ver e controlar minhas câmeras IP (ONVIF) sem depender do app do fabricante. Um backend Flask reempacota o stream RTSP em MJPEG (vídeo) e MP3 (áudio) sob demanda via FFmpeg, controla PTZ via ONVIF, e só transcodifica enquanto tem alguém assistindo — economizando CPU.",
+          "Web panel I built to view and control my IP cameras (ONVIF) without the manufacturer's app. A Flask backend repackages the RTSP stream into MJPEG (video) and MP3 (audio) on demand via FFmpeg, controls PTZ over ONVIF, and only transcodes while someone is watching — saving CPU.",
+        ),
+        stack: ["Python", "Flask", "FFmpeg", "ONVIF", "RTSP"],
+        role: l("Full stack + infra", "Full stack + infra"),
+        status: "active",
+        category: "infraestrutura",
+        highlight: true,
+        port: 5055,
+        color: "#2a6a8a",
       },
 
       /* ── 04 · Embedded & IoT ─────────────────────────────── */

@@ -22,6 +22,10 @@ import {
   Cpu,
   Bot,
   Box,
+  Heart,
+  Music,
+  BarChart3,
+  Camera,
   type LucideIcon,
 } from "lucide-react";
 import { ProjectDiagram } from "./project-diagram";
@@ -48,6 +52,10 @@ const ICONS: Record<string, LucideIcon> = {
   Radio,
   Cpu,
   Bot,
+  Heart,
+  Music,
+  BarChart3,
+  Camera,
 };
 
 const STATUS_COLOR: Record<Project["status"], string> = {
