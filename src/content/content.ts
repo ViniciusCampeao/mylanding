@@ -149,11 +149,6 @@ export const content: Content = {
           { name: "Raspberry Pi", projectId: "colonias-bacterianas" },
         ],
       },
-      {
-        id: "produtividade",
-        label: l("Produtividade & IA", "Productivity & AI"),
-        items: [{ name: "Claude Code" }],
-      },
     ],
   },
 
