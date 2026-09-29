@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const W = 760;
-const H = 620;
+const H = 720;
 
 const C = {
   wan: "#6a7a6a",
@@ -21,6 +21,9 @@ const C = {
   entry: "#6a7a6a",
   aws: "#b8792a",
   deploy: "#8a8a8a",
+  treino: "#2a9a6a",
+  caa: "#5a7a9a",
+  dr: "#3a9a6a",
 };
 
 type NodeKey =
@@ -38,6 +41,9 @@ type NodeKey =
   | "pg"
   | "redis"
   | "aws"
+  | "treino"
+  | "caa"
+  | "standby"
   | "github"
   | "deploy";
 
@@ -93,9 +99,19 @@ const nodes: Record<NodeKey, NodeDef> = {
     size: 24,
   },
   ytmp3: { x: 640, y: 424, label: "ytmp3", sublabel: ":3005", color: C.ytmp3, size: 24 },
-  pg: { x: 120, y: 536, label: "postgres", sublabel: ":5432", color: C.pg, size: 22 },
-  redis: { x: 250, y: 536, label: "redis", sublabel: ":6379", color: C.redis, size: 22 },
-  aws: { x: 380, y: 536, label: "AWS", sublabel: "S3 Backup", color: C.aws, size: 22 },
+  treino: { x: 185, y: 490, label: "personal-trainer", sublabel: ":8180", color: C.treino, size: 24 },
+  caa: { x: 415, y: 490, label: "caa-audit-log", sublabel: ":4000", color: C.caa, size: 24 },
+  pg: { x: 120, y: 566, label: "postgres", sublabel: ":5432", color: C.pg, size: 22 },
+  redis: { x: 250, y: 566, label: "redis", sublabel: ":6379", color: C.redis, size: 22 },
+  aws: { x: 380, y: 566, label: "AWS", sublabel: "S3 Backup", color: C.aws, size: 22 },
+  standby: {
+    x: 590,
+    y: 645,
+    label: "Standby (DR)",
+    sublabel: "192.168.18.163",
+    color: C.dr,
+    size: 28,
+  },
 };
 
 interface EdgeDef {
@@ -119,11 +135,14 @@ const edges: EdgeDef[] = [
   { from: "caddy", to: "monitor", color: C.monitor, id: "e-monitor" },
   { from: "caddy", to: "casamento", color: C.casamento, id: "e-casamento" },
   { from: "caddy", to: "ytmp3", color: C.ytmp3, id: "e-ytmp3" },
+  { from: "caddy", to: "treino", color: C.treino, id: "e-treino" },
+  { from: "caddy", to: "caa", color: C.caa, id: "e-caa" },
   { from: "farma", to: "pg", color: C.pg, id: "e-pg" },
   { from: "farma", to: "redis", color: C.redis, id: "e-redis" },
   { from: "pg", to: "aws", color: C.aws, id: "e-aws", guard: true },
   { from: "github", to: "deploy", color: C.deploy, id: "e-gh" },
   { from: "deploy", to: "caddy", color: C.deploy, id: "e-deploy" },
+  { from: "security", to: "standby", color: C.dr, id: "e-standby" },
 ];
 
 // Dado um nó selecionado, calcula quais nós e arestas fazem parte do
@@ -261,7 +280,7 @@ export function InfraDiagram() {
       <svg
         ref={svgRef}
         viewBox={`0 0 ${W} ${H}`}
-        style={{ width: "100%", minWidth: W, maxHeight: 620, display: "block" }}
+        style={{ width: "100%", minWidth: W, maxHeight: 720, display: "block" }}
         onMouseLeave={() => setSelected(null)}
       >
         <defs>

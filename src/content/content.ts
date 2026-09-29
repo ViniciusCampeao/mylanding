@@ -109,6 +109,7 @@ export const content: Content = {
           { name: "TypeScript", projectId: "mindrabar" },
           { name: "React", projectId: "mindrabar" },
           { name: "Tailwind CSS", projectId: "mindrabar" },
+          { name: "PWA", projectId: "personal-trainer" },
         ],
       },
       {
@@ -138,6 +139,7 @@ export const content: Content = {
           { name: "Linux / VPS", projectId: "self-hosted-infrastructure" },
           { name: "Cloudflare Tunnel", projectId: "self-hosted-infrastructure" },
           { name: "CI/CD (GitHub Actions)", projectId: "self-hosted-infrastructure" },
+          { name: "Failover / DR", projectId: "vps-failover" },
         ],
       },
       {
@@ -372,6 +374,30 @@ export const content: Content = {
         restricted: true,
         color: "#5a6a7a",
       },
+      {
+        id: "personal-trainer",
+        icon: "Dumbbell",
+        title: l("Personal Trainer", "Personal Trainer"),
+        tagline: l(
+          "Plataforma white-label para treinador pessoal (cliente real)",
+          "White-label platform for a personal trainer (real client)",
+        ),
+        description: l(
+          "Plataforma white-label de personal trainer para cliente real, com app PWA offline-first: biblioteca de exercícios, programas de treino, execução sem conexão, avaliações físicas, dieta com comentários do aluno e do trainer, agenda de treinos e reuniões, e painel administrativo. Backend modular em NestJS com multitenancy, autenticação, LGPD e Web Push; frontend React PWA; PostgreSQL + Redis; mídia em MinIO (S3) — tudo containerizado e publicado na VPS via Cloudflare Tunnel.",
+          "White-label personal trainer platform for a real client, with an offline-first PWA app: exercise library, training programs, offline execution, assessments, nutrition with student/trainer comments, workout and meeting scheduling, and an admin panel. Modular NestJS backend with multitenancy, auth, LGPD compliance, and Web Push; React PWA frontend; PostgreSQL + Redis; media on MinIO (S3) — fully containerized and published on my VPS via Cloudflare Tunnel.",
+        ),
+        stack: ["NestJS", "React", "PWA", "Prisma", "PostgreSQL", "Redis", "MinIO / S3", "Web Push", "Docker"],
+        role: l(
+          "Full stack + arquitetura + deploy",
+          "Full stack + architecture + deployment",
+        ),
+        status: "active",
+        category: "producao",
+        highlight: true,
+        port: 8180,
+        liveUrl: "https://treino.flux-solutions.online",
+        color: "#2a9a6a",
+      },
 
       /* ── 02 · Pesquisa ──────────────────────────────────── */
       {
@@ -455,6 +481,49 @@ export const content: Content = {
             { from: "apps", to: "monitoring" },
             { from: "db", to: "monitoring" },
             { from: "redis-net", to: "monitoring" },
+          ],
+        },
+      },
+      {
+        id: "vps-failover",
+        icon: "ShieldCheck",
+        title: l("Failover & Disaster Recovery", "Failover & Disaster Recovery"),
+        tagline: l(
+          "Réplica, dumps, snapshots e failover em duas máquinas",
+          "Replication, dumps, snapshots, and failover across two machines",
+        ),
+        description: l(
+          "Sistema de disaster recovery e failover para a minha VPS, distribuído em duas máquinas: a principal (vpspk) e uma standby em outra rede. A standby replica a VPS a cada 10 minutos via rsync incremental (código, configurações e inventário de containers/crontab/PM2), gera dumps consistentes dos bancos PostgreSQL (retenção de 48 ciclos por banco) e snapshots diários com hardlinks (retenção de 7 dias). Monitoramento a cada 30s cobre HTTP, SSH via Tailscale, idade do último backup e uso de disco — declarando a queda após 3 falhas seguidas e acionando o failover (subida automática dos containers, restauração dos bancos, troca de DNS e segundo Cloudflare Tunnel), com painel web e alertas via Telegram. Acesso administrativo por chave SSH dedicada restrita ao IP Tailscale da standby, sem PTY nem encaminhamento de porta.",
+          "Disaster recovery and failover system for my VPS, spread across two machines: the primary (vpspk) and a standby on a separate network. The standby replicates the VPS every 10 minutes via incremental rsync (code, configs, and an inventory of containers/crontab/PM2), produces consistent PostgreSQL dumps (48-cycle retention per database), and daily hardlink-based snapshots (7-day retention). Monitoring every 30s covers HTTP, SSH over Tailscale, last-backup age, and disk usage — declaring an outage after 3 consecutive failures and triggering failover (automatic container startup, database restore, DNS switch, and a second Cloudflare Tunnel), with a web panel and Telegram alerts. Admin access via a dedicated SSH key restricted to the standby's Tailscale IP, with no PTY or port forwarding.",
+        ),
+        stack: ["Linux", "systemd", "rsync", "pg_dump", "PostgreSQL", "Samba", "wsdd", "Tailscale", "Shell Script", "Telegram (alerta)"],
+        role: l(
+          "Arquitetura de DR, replicação e monitoramento",
+          "DR architecture, replication, and monitoring",
+        ),
+        status: "active",
+        category: "infraestrutura",
+        highlight: true,
+        color: "#3a9a6a",
+        diagram: {
+          layers: [
+            [{ id: "vps-fail", label: "VPS Principal", sublabel: "vpspk" }],
+            [{ id: "replica", label: "Replicação", sublabel: "rsync · 10 min" }],
+            [{ id: "standby", label: "Standby", sublabel: "192.168.18.163" }],
+            [
+              { id: "dumps", label: "Dumps PostgreSQL", sublabel: "48 ciclos" },
+              { id: "snap", label: "Snapshots", sublabel: "7 dias" },
+            ],
+            [{ id: "monitor-dr", label: "Monitoramento", sublabel: "HTTP · SSH · backup" }],
+            [{ id: "failover-dr", label: "Failover", sublabel: "DNS + Cloudflare Tunnel" }],
+          ],
+          edges: [
+            { from: "vps-fail", to: "replica" },
+            { from: "replica", to: "standby" },
+            { from: "standby", to: "dumps" },
+            { from: "standby", to: "snap" },
+            { from: "standby", to: "monitor-dr" },
+            { from: "monitor-dr", to: "failover-dr" },
           ],
         },
       },
@@ -548,6 +617,29 @@ export const content: Content = {
         category: "infraestrutura",
         port: 3001,
         color: "#6a5a2a",
+      },
+      {
+        id: "caa-audit-log",
+        icon: "ScrollText",
+        title: l("CAA — Auditoria de Acesso", "CAA — Access Audit"),
+        tagline: l(
+          "Fingerprint e auditoria de acessos em tempo real",
+          "Real-time access fingerprinting and audit",
+        ),
+        description: l(
+          "Serviço de auditoria de acesso para aplicações web: registra IP, país (via Cloudflare), fingerprint de dispositivo e navegador (User-Agent Client Hints, tela, rede e locale) em logs JSONL, com painel administrativo protegido por Basic Auth para busca, filtro, agrupamento por dispositivo e exportação em JSON. Express rodando via PM2 na VPS.",
+          "Access-audit service for web apps: logs IP, country (via Cloudflare), and device/browser fingerprinting (User-Agent Client Hints, screen, network, and locale) into JSONL logs, with a Basic-Auth admin panel for search, filtering, per-device grouping, and JSON export. Express running via PM2 on the VPS.",
+        ),
+        stack: ["Node.js", "Express", "PM2", "User-Agent Client Hints", "JSONL"],
+        role: l(
+          "Backend + painel + deploy",
+          "Backend + panel + deployment",
+        ),
+        status: "active",
+        category: "infraestrutura",
+        port: 4000,
+        liveUrl: "https://caa-logs.kernel-cloud.online",
+        color: "#5a7a9a",
       },
 
       {

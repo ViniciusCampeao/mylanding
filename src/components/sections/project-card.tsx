@@ -26,6 +26,9 @@ import {
   Music,
   BarChart3,
   Camera,
+  Dumbbell,
+  ScrollText,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 import { ProjectDiagram } from "./project-diagram";
@@ -56,6 +59,9 @@ const ICONS: Record<string, LucideIcon> = {
   Music,
   BarChart3,
   Camera,
+  Dumbbell,
+  ScrollText,
+  ShieldCheck,
 };
 
 const STATUS_COLOR: Record<Project["status"], string> = {
